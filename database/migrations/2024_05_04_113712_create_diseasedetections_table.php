@@ -19,7 +19,7 @@ class CreateDiseasedetectionsTable extends Migration
             $table->date('DetectionDate')->nullable();
             $table->string('PlantPhoto')->nullable();
             $table->unsignedBigInteger('DiseaseID')->nullable();
-            $table->string('ResultPlantDetection')->nullable(); // Tambah kolom baru di sini
+            $table->string('ResultDetection')->nullable();
             $table->foreign('UserID')->references('id')->on('users');
             $table->foreign('DiseaseID')->references('SolutionID')->on('diseasesolutions');
             $table->timestamps();

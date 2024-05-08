@@ -18,7 +18,7 @@ class Diseasedetection extends Model
         'DetectionDate',
         'PlantPhoto',
         'DiseaseID',
-        'ResultPlantDetection'
+        'ResultDetection'
     ];
 
     public function farmer()

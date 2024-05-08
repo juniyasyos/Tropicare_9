@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use App\Models\DiseaseSolution;
 use App\Models\Diseasedetection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -15,8 +16,8 @@ use Illuminate\Support\Facades\Storage;
 class UploadDetectionForm extends Component
 {
     public $photo;
-    public $result_photo;
-    public $result_massage;
+    public $disease;
+    public $solution;
 
     use WithFileUploads;
 
@@ -39,67 +40,93 @@ class UploadDetectionForm extends Component
             if (!$user) {
                 throw new Exception("User is not authenticated.");
             }
+            $storedImagePath = $this->storeImageHelper($user->folder);
 
-            // Upload image to repository
-            $imagePath = $this->storeImage();
+            $result = $this->sendImageToDetectionAPI($storedImagePath);
 
+            $this->processDetectionResult($result);
+
+            // $this->saveDetectionResult($storedImagePath, $user->id, $result['predictions'][0]['class']);
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    public function storeImage()
+    private function sendImageToDetectionAPI($storedImagePath)
     {
-        try {
-            $user = Auth::user();
-            if (!$user) {
-                throw new Exception("User is not authenticated.");
+        $imageData = file_get_contents(storage_path('app/' . $storedImagePath));
+        $data = base64_encode($imageData);
+
+        $api_key = "ocI0aRkXvOCRimVsznZU"; // Set API Key
+        $model_endpoint = "p_diseases/1"; // Set model endpoint (Found in Dataset URL)
+
+        // URL for Http Request
+        $url = "https://detect.roboflow.com/" . $model_endpoint . "?api_key=" . $api_key;
+
+        // Setup + Send Http request
+        $options = [
+            'http' => [
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
+                'content' => $data
+            ]
+        ];
+
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+
+        return json_decode($result, true);
+    }
+
+    private function processDetectionResult($result)
+    {
+        $detectedDiseases = array_unique(array_column($result['predictions'], 'class'));
+
+        // Inisialisasi array untuk menyimpan semua solusi
+        $solutions = [];
+
+        // Pastikan array $detectedDiseases tidak kosong
+        if (!empty($detectedDiseases)) {
+            foreach ($detectedDiseases as $diseaseName) {
+                $diseaseSolution = DiseaseSolution::where('DiseaseName', $diseaseName)->first();
+                if ($diseaseSolution) {
+                    // Tambahkan solusi ke array
+                    $solutions[$diseaseName] = $diseaseSolution->SolutionDescription;
+                }
             }
+        }
 
-            // Menghitung ID terakhir dari detection dan menambahkannya dengan 1
-            $nextDetectionId = Diseasedetection::max('DetectionID') + 1 ?? 1;
-
-            // Menentukan nama folder untuk menyimpan gambar
-            $folderName = "detect_{$nextDetectionId}";
-
-            // Simpan kedua versi gambar (sebelum dan sesudah deteksi)
-            $storedImagePathBefore = $this->storeImageHelper($user->folder, $folderName, 'before');
-            $storedImagePathAfter = str_replace('before', 'after', $storedImagePathBefore);
-            $this->result_photo = $storedImagePathAfter;
-
-            // Membuat objek Image dan menyimpannya ke dalam basis data
-            $detection = new Diseasedetection;
-            $detection->PlantPhoto = $storedImagePathBefore;
-            $detection->UserID = $user->id;
-            $detection->ResultPlantDetection = $storedImagePathAfter;
-            $detection->save();
-
-            // Kirim permintaan POST ke endpoint FastAPI untuk mengunggah gambar
-            $response = Http::attach(
-                'image',
-                file_get_contents(Storage::path($storedImagePathBefore)),
-                basename($storedImagePathBefore)
-            )->post('http://127.0.0.1:5000/upload_image/' . $nextDetectionId--);
-
-            // Periksa kode status respons
-            if ($response->status() == 200) {
-                return ['session' => 'success' ,'url' => $storedImagePathBefore, 'id' => $detection->DetectionID];
-            } else {
-                return ['session'=>'failed', 'error' => $response->body(), 'url' => '', 'id' => ''];
-            }
-        } catch (Exception $e) {
-            throw $e;
+        if (!empty($solutions)) {
+            // Gabungkan nama penyakit dan solusi menjadi string yang dipisahkan oleh koma
+            $this->disease = implode(', ', array_keys($solutions));
+            $this->amount = count($detectedDiseases);
+            $this->solution = implode(', ', $solutions);
+        } else {
+            // Jika tidak ada solusi yang ditemukan, atur properti menjadi null
+            $this->disease = null;
+            $this->amount = 0;
+            $this->solution = null;
         }
     }
-    private function storeImageHelper($userFolder, $folderName, $prefix)
+
+    private function saveDetectionResult($storedImagePath, $userId, $result_detection)
     {
-        $directory = "users/{$userFolder}/detect/{$folderName}";
+        $detection = new Diseasedetection;
+        $detection->PlantPhoto = $storedImagePath;
+        $detection->UserID = $userId;
+        $detection->ResultDetection = $result_detection;
+        $detection->save();
+    }
+
+    private function storeImageHelper($userFolder)
+    {
+        $directory = "public/users/{$userFolder}";
 
         // Membuat direktori jika belum ada
         Storage::makeDirectory($directory);
 
         // Menghasilkan nama file acak
-        $fileName = "{$prefix}_detection_" . Str::random(5) . '.' . $this->photo->getClientOriginalExtension();
+        $fileName = "detection_" . Str::random(5) . '.' . $this->photo->getClientOriginalExtension();
 
         // Menyimpan file ke dalam direktori yang telah dibuat
         return Storage::putFileAs($directory, $this->photo, $fileName, 'public');

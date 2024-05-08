@@ -53,7 +53,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        $userImagePath = 'users/' . $folderName;
+        $userImagePath = 'public/users/' . $folderName;
         Storage::makeDirectory($userImagePath);
 
         return redirect(RouteServiceProvider::HOME);

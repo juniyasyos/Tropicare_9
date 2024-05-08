@@ -34,16 +34,17 @@
                         </div>
                         @auth
                             <div class="navbar-end mr-4">
-                                <a href="{{ url('dashboard') }}" class="btn w-32 bg-blue-500 border-none text-white">Dashboard</a>
+                                <a href="{{ url('dashboard') }}"
+                                    class="btn w-32 bg-blue-500 border-none text-white">Dashboard</a>
                             </div>
-                        @else
+                            {{-- @else
                             <div class="navbar-end mr-4 space-x-4">
                                 <a href="{{ route('register') }}" class="btn w-32 bg-blue-500 border-none text-white">Sign
                                     up</a>
                                 @if (Route::has('login'))
                                     <a href="{{ route('login') }}" class="btn w-32 btn-outline">Login</a>
                                 @endif
-                            </div>
+                            </div> --}}
                         @endauth
                     </div>
                 @endif

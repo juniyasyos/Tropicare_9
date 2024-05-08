@@ -21,11 +21,11 @@
 
             {{-- Email Addres --}}
             <div class="space-y-2">
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 <x-input-label for="email" :value="__('Email')" />
                 <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus
                     autocomplete="username" />
                 <div id="emailValidationMessage" class="text-red-500 text-sm mt-1"></div>
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
             {{-- Password --}}
