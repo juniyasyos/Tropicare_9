@@ -3,14 +3,12 @@
 namespace App\Http\Livewire;
 
 use Exception;
-use GuzzleHttp\Client;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use App\Models\DiseaseSolution;
 use App\Models\Diseasedetection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class UploadDetectionForm extends Component
@@ -18,41 +16,45 @@ class UploadDetectionForm extends Component
     public $photo;
     public $disease;
     public $solution;
+    private $storedImagePath;
+    private $userId;
+    private $result_detection;
 
     use WithFileUploads;
 
-    public function upload()
+    public function uploadData()
     {
         $this->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096',
         ]);
+        // // Simpan foto ke direktori yang sesuai dengan kebutuhan Anda
+        // $path = $this->photo->store('photos');
 
-        // Simpan foto ke direktori yang sesuai dengan kebutuhan Anda
-        $path = $this->photo->store('photos');
-
-        session()->flash('message', 'Foto berhasil diunggah.');
+        // session()->flash('message', 'Foto berhasil diunggah.');
     }
 
-    public function uploadImage()
+    public function postData()
     {
         try {
             $user = Auth::user();
             if (!$user) {
                 throw new Exception("User is not authenticated.");
             }
+
             $storedImagePath = $this->storeImageHelper($user->folder);
 
-            $result = $this->sendImageToDetectionAPI($storedImagePath);
+            $result = $this->getDataAnalisist($storedImagePath);
 
-            $this->processDetectionResult($result);
+            $this->getResultDiseaseDetection($result);
 
-            // $this->saveDetectionResult($storedImagePath, $user->id, $result['predictions'][0]['class']);
+            $this->storedImagePath = $storedImagePath;
+            $this->userId = $user->id;
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    private function sendImageToDetectionAPI($storedImagePath)
+    private function getDataAnalisist($storedImagePath)
     {
         $imageData = file_get_contents(storage_path('app/' . $storedImagePath));
         $data = base64_encode($imageData);
@@ -78,7 +80,7 @@ class UploadDetectionForm extends Component
         return json_decode($result, true);
     }
 
-    private function processDetectionResult($result)
+    private function getResultDiseaseDetection($result)
     {
         $detectedDiseases = array_unique(array_column($result['predictions'], 'class'));
 
@@ -103,20 +105,28 @@ class UploadDetectionForm extends Component
             $this->solution = implode(', ', $solutions);
         } else {
             // Jika tidak ada solusi yang ditemukan, atur properti menjadi null
-            $this->disease = null;
+            $this->disease = "sehat";
             $this->amount = 0;
             $this->solution = null;
         }
     }
 
-    private function saveDetectionResult($storedImagePath, $userId, $result_detection)
+    public function saveDetectionResult()
     {
         $detection = new Diseasedetection;
-        $detection->PlantPhoto = $storedImagePath;
-        $detection->UserID = $userId;
-        $detection->ResultDetection = $result_detection;
+        $detection->PlantPhoto = $this->storedImagePath;
+        $detection->UserID = $this->userId;
+        $detection->ResultDetection = $this->disease;
+
+        // Set DiseaseID based on $this->disease if available
+        $disease = DiseaseSolution::where('DiseaseName', $this->disease)->first();
+        if ($disease) {
+            $detection->DiseaseID = $disease->SolutionID;
+        }
+
         $detection->save();
     }
+
 
     private function storeImageHelper($userFolder)
     {
@@ -132,8 +142,14 @@ class UploadDetectionForm extends Component
         return Storage::putFileAs($directory, $this->photo, $fileName, 'public');
     }
 
+    public function clearPhoto()
+    {
+        $this->photo = null;
+    }
+
     public function render()
     {
         return view('livewire.upload-detection-form');
     }
+
 }

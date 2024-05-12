@@ -16,7 +16,6 @@ class CreateDiseasedetectionsTable extends Migration
         Schema::create('diseasedetections', function (Blueprint $table) {
             $table->id('DetectionID');
             $table->unsignedBigInteger('UserID')->nullable();
-            $table->date('DetectionDate')->nullable();
             $table->string('PlantPhoto')->nullable();
             $table->unsignedBigInteger('DiseaseID')->nullable();
             $table->string('ResultDetection')->nullable();

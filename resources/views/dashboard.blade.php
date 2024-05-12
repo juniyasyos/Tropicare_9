@@ -109,11 +109,11 @@
                     Fitur rekapitulasi membuat kenyamanan transaksi dan perencanaan kebun anda semakin mulus
                 </p>
                 <div class="flex justify-end">
-                    <button
+                    <a href="{{ route('rekapitulasi.show') }}"
                         class="btn w-1/2 right-0 rounded-full bg-primary-second hover:bg-white hover:text-black text-white font-inter font-bold"
                         style="border: none;">
                         Lanjutkan
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

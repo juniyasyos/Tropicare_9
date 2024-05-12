@@ -13,6 +13,7 @@ class DetectController extends Controller
     {
         if (Auth::check()) {
             return view('detection.detect', [
+            // return view('rekapitulasi.index', [
                 'title' => 'Detections'
             ]);
         }
