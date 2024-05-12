@@ -45,6 +45,9 @@ Daftar fitur utama Tropicare:
 
 Petunjuk instalasi Tropicare:
 
+## Permulaan
+Nyalakan XAMPP, MAMPP Laravel Heart apapun itu dan buat database bernama tropicare_final
+
 ```bash
 git clone https://github.com/juniyasyos/Tropicare_9.git
 cd Tropicare
@@ -54,3 +57,17 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate
 php artisan serve
+```
+
+# Kontribusi
+
+## Jika Anda ingin berkontribusi pada Tropicase, silakan ikuti langkah-langkah berikut:
+1. Fork proyek ini (https://github.com/<USERNAME>/Tropicase/fork)
+2. Buat fitur baru (git checkout -b fitur/fiturBaru)
+3. Commit perubahan Anda (git commit -am 'Tambahkan fitur baru')
+4. Push ke branch Anda (git push origin fitur/fiturBaru)
+5. Buat pull request baru
+
+
+#Lisensi
+Tropicase dilisensikan di bawah MIT License.
