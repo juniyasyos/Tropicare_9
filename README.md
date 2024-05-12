@@ -1,4 +1,56 @@
-copas .env punya ku
-npm install 
-composer istall/update
+<!-- Nama Proyek -->
+<h1 align="center">Tropicare</h1>
+
+<!-- Deskripsi -->
+<p align="center">Aplikasi pembantu petani pepaya dalam mengolah kebunnya, dengan fitur unggulan deteksi dan rekapitulasi.</p>
+
+<!-- Badges -->
+<div align="center">
+    <!-- Badge Status Build -->
+    <img src="https://img.shields.io/github/workflow/status/juniyasyos/Tropicare_9/Build?label=Build&style=for-the-badge" alt="Build Status">
+    <!-- Badge Lisensi -->
+    <img src="https://img.shields.io/github/license/juniyasyos/Tropicare_9?label=Lisensi&style=for-the-badge" alt="License">
+    <!-- Badge Jumlah Issues -->
+    <img src="https://img.shields.io/github/issues/juniyasyos/Tropicare_9?label=Issues&style=for-the-badge" alt="Issues">
+    <!-- Badge Jumlah Pull Requests -->
+    <img src="https://img.shields.io/github/issues-pr/juniyasyos/Tropicare_9?label=Pull%20Requests&style=for-the-badge" alt="Pull Requests">
+</div>
+
+<!-- Gambar / GIF -->
+<p align="center">
+    <img src="https://placeimg.com/640/480/tech" alt="Demo">
+</p>
+
+## Daftar Isi
+
+- [Tentang](#tentang)
+- [Fitur](#fitur)
+- [Instalasi](#instalasi)
+- [Penggunaan](#penggunaan)
+- [Kontribusi](#kontribusi)
+- [Lisensi](#lisensi)
+
+## Tentang
+
+Tropicare adalah aplikasi pembantu petani pepaya yang membantu mereka dalam mengelola kebun pepaya mereka dengan lebih efisien. Aplikasi ini dilengkapi dengan fitur unggulan deteksi dan rekapitulasi untuk mempermudah petani dalam mengoptimalkan produksi pepaya mereka.
+
+## Fitur
+
+Daftar fitur utama Tropicare:
+
+- Deteksi Penyakit Pepaya: Fitur ini memungkinkan pengguna untuk mendeteksi penyakit yang mungkin menyerang tanaman pepaya mereka.
+- Rekapitulasi Produksi: Pengguna dapat melihat rekapitulasi produksi pepaya dalam rentang waktu tertentu, termasuk total hasil panen, harga jual, dan lainnya.
+
+## Instalasi
+
+Petunjuk instalasi Tropicare:
+
+```bash
+git clone https://github.com/juniyasyos/Tropicare_9.git
+cd Tropicare
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
 php artisan migrate
+php artisan serve
