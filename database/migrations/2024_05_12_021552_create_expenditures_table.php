@@ -16,6 +16,7 @@ class CreateExpendituresTable extends Migration
         Schema::create('expenditures', function (Blueprint $table) {
             $table->id('ExpenditureID');
             $table->unsignedBigInteger('UserId');
+            $table->string('NameExpenditure');
             $table->string('Description');
             $table->date('ExpenditureDate');
             $table->decimal('Amount', 10, 2);

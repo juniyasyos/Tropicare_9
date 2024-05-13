@@ -11,7 +11,7 @@
                 </a>
             </div>
             <div class="navbar-center mt-5">
-                <a class="btn btn-ghost text-lg">Scan Penyakit</a>
+                <a class="btn btn-ghost text-lg">Rekapitulasi</a>
             </div>
             <div class="navbar-end">
             </div>

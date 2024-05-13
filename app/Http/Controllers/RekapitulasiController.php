@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Expenditure;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +62,44 @@ class RekapitulasiController extends Controller
 
                 // Simpan data ke dalam tabel transactions
                 $transaction->save();
+
+                // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+                return back()->with('data_saved', 'Data telah tersimpan.');
+            } else {
+                // Jika pengguna tidak masuk, lempar pengecualian
+                throw new \Exception('Pengguna tidak terautentikasi.');
+            }
+        } catch (\Exception $e) {
+            // Tangani kesalahan
+            return back()->withInput()->withErrors(['error' => 'Gagal menyimpan data. Silakan coba lagi.']);
+        }
+    }
+
+    public function prosesFormAddExpend(Request $request)
+    {
+        // Validasi data
+        $validatedData = $request->validate([
+            'nama_pengeluaran' => 'required|string|max:100',
+            'tanggal' => 'required|date',
+            'deskripsi' => 'required|string|max:255',
+            'pengeluaran' => 'required|numeric',
+        ]);
+
+        try {
+            // Periksa apakah pengguna masuk
+            if (Auth::check()) {
+                // Buat instance objek Transaction
+                $expenditures = new Expenditure();
+
+                // Isi atribut-atribut sesuai dengan data yang diterima dari formulir
+                $expenditures->NameExpenditure = $validatedData['nama_pengeluaran'];
+                $expenditures->ExpenditureDate = $validatedData['tanggal'];
+                $expenditures->Description = $validatedData['deskripsi'];
+                $expenditures->Amount = $validatedData['pengeluaran'];
+                $expenditures->UserId = Auth::id();
+
+                // Simpan data ke dalam tabel expendituress
+                $expenditures->save();
 
                 // Redirect kembali ke halaman sebelumnya dengan pesan sukses
                 return back()->with('data_saved', 'Data telah tersimpan.');

@@ -45,7 +45,7 @@
         <div class="flex-grow bg-gray-100">
             <div class="navbar">
                 <div class="navbar-start">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('rekapitulasi.show') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" id="back">
                             <path
                                 d="M22,15H12.41l2.3-2.29a1,1,0,0,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L12.41,17H22a1,1,0,0,0,0-2Z">

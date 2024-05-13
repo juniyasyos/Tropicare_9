@@ -2783,6 +2783,13 @@ input.tab:checked + .tab-content,
   padding-right: 0.5rem;
   font-size: 0.75rem;
 }
+.btn-sm {
+  height: 2rem;
+  min-height: 2rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 0.875rem;
+}
 .btn-lg {
   height: 4rem;
   min-height: 4rem;
@@ -2798,6 +2805,11 @@ input.tab:checked + .tab-content,
   width: 1.5rem;
   padding: 0px;
 }
+.btn-square:where(.btn-sm) {
+  height: 2rem;
+  width: 2rem;
+  padding: 0px;
+}
 .btn-square:where(.btn-lg) {
   height: 4rem;
   width: 4rem;
@@ -2806,6 +2818,12 @@ input.tab:checked + .tab-content,
 .btn-circle:where(.btn-xs) {
   height: 1.5rem;
   width: 1.5rem;
+  border-radius: 9999px;
+  padding: 0px;
+}
+.btn-circle:where(.btn-sm) {
+  height: 2rem;
+  width: 2rem;
   border-radius: 9999px;
   padding: 0px;
 }
@@ -3714,6 +3732,10 @@ input.tab:checked + .tab-content,
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
 .bg-gray-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
@@ -3748,6 +3770,9 @@ input.tab:checked + .tab-content,
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
 }
 .bg-cover {
   background-size: cover;
@@ -3790,6 +3815,9 @@ input.tab:checked + .tab-content,
 }
 .p-6 {
   padding: 1.5rem;
+}
+.p-8 {
+  padding: 2rem;
 }
 .px-1 {
   padding-left: 0.25rem;
@@ -4143,6 +4171,11 @@ input.tab:checked + .tab-content,
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .shadow-sm {

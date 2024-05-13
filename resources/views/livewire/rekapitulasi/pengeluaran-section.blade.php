@@ -16,7 +16,7 @@
 
     <div class="bg-white p-6 pb-20">
         <div class="flex justify-between items-center mb-5 mt-[-10px]">
-            <h1 class="font-inter">Nota Penjualan</h1>
+            <h1 class="font-inter">Data pengeluaran</h1>
             <div class="dropdown dropdown-bottom dropdown-end">
                 <div tabindex="0" role="button"
                     class="font-inter font-semibold text-[14px] btn btn-ghost text-blue-500">Filter</div>
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div>
-            @if ($transactions->isEmpty())
+            @if ($expenditures->isEmpty())
                 <div class="bg-gray-100 p-6 rounded-lg shadow-md">
                     <p class="text-gray-500 text-center">Tidak ada transaksi</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="none" class="mx-auto"
@@ -127,65 +127,37 @@
                     </svg>
                 </div>
             @else
-                @foreach ($transactions as $transaction)
-                    <div onclick="showTransactionDetail({{ json_encode($transaction) }})"
-                        class="max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow flex space-x-5 items-center mb-2 cursor-pointer transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl hover:bg-blue-300">
-                        <div class="hover:bg-blue-300">
+                @foreach ($expenditures as $expenditure)
+                    <div
+                        class="max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow flex space-x-5 items-center mb-2">
+                        <div>
                             <p class="font-normal text-[12px] font-inter">
-                                {{ \Carbon\Carbon::parse($transaction->TransactionDate)->translatedFormat('j F Y') }}
+                                {{ \Carbon\Carbon::parse($expenditure->ExpenditureDate)->translatedFormat('j F Y') }}
                             </p>
                             <h5 class="text-xl font-semibold text-gray-700 tracking-tight font-inter">
-                                Rp{{ number_format($transaction->PricePerKg * $transaction->Quantity) }}
+                                Rp{{ number_format($expenditure->Amount) }}
                             </h5>
                         </div>
                     </div>
                 @endforeach
-                <dialog id="Detail_Modal" class="modal">
-                    <div class="modal-box p-6 bg-white rounded-lg shadow-lg w-11/12">
-                        <form method="dialog">
-                            <button class="absolute top-2 right-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                            </button>
-                        </form>
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="font-bold text-lg">Transaction Detail</h3>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="text-gray-600">Date:</div>
-                            <div class="font-semibold" id="transactionDetailDate"></div>
-                            <div class="text-gray-600">Amount:</div>
-                            <div class="font-semibold" id="transactionDetailAmount"></div>
-                            <div class="text-gray-600">Status:</div>
-                            <div class="font-semibold" id="transactionDetailStatus">Pending</div>
-                        </div>
-                        <div class="flex justify-end space-x-5">
-                            <button class="btn btn-outline btn-error px-10">Hapus</button>
-                            <button class="btn btn-primary px-10">Edit</button>
-                        </div>
-                    </div>
-                </dialog>
             @endif
         </div>
     </div>
 
     <div class="flex justify-center bg-white pb-10">
         <!-- Modal toggle -->
-        <button class="btn btn-wide btn-success text-white" onclick="modalAddNota.showModal()">Tambah Nota</button>
+        <button class="btn btn-wide btn-success text-white" onclick="modalAddExpend.showModal()">Tambah Pengeluaran</button>
 
-        <dialog id="modalAddNota" class="modal">
+        <dialog id="modalAddExpend" class="modal">
             <div class="modal-box">
-                <h3 class="font-bold text-lg mb-5">Buat nota baru</h3>
+                <h3 class="font-bold text-lg mb-5">Buat data pengeluaran</h3>
                 <div class="py-4">
-                    <form method="POST" action="{{ route('penjualan.add') }}">
+                    <form method="POST" action="{{ route('pengeluaran.add') }}">
                         @csrf
                         <div class="mb-4">
-                            <label for="nama_barang" class="block text-sm font-medium text-gray-700">Nama
-                                Barang</label>
-                            <input type="text" id="nama_barang" name="nama_barang" value="Pepaya California"
+                            <label for="nama_pengeluaran" class="block text-sm font-medium text-gray-700">Nama
+                                Pengeluaran</label>
+                            <input type="text" id="nama_pengeluaran" name="nama_pengeluaran"
                                 class="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                         </div>
                         <div class="mb-4">
@@ -194,40 +166,25 @@
                                 class="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                         </div>
                         <div class="mb-4">
-                            <label for="barang_kg" class="block text-sm font-medium text-gray-700">Jumlah Barang per
-                                Kg</label>
-                            <input type="number" id="barang_kg" name="barang_kg"
+                            <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
+                            <input type="text" id="deskripsi" name="deskripsi"
                                 class="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                         </div>
                         <div class="mb-4">
-                            <label for="harga_per_pcs" class="block text-sm font-medium text-gray-700">Harga Per
-                                Kg</label>
-                            <input type="number" id="harga_per_pcs" name="harga_per_pcs" step="0.01"
+                            <label for="pengeluaran" class="block text-sm font-medium text-gray-700">Pengeluaran</label>
+                            <input type="number" id="pengeluaran" name="pengeluaran" step="0.01"
                                 class="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                         </div>
                         <div class="flex justify-end space-x-4">
-                            <button class="btn btn-outline btn-error"
+                            <button class="btn btn-outline btn-error btn-lg"
                                 onclick="modalAddNota.close()">Close</button>
                             <button type="submit"
-                                class="btn btn-success text-white bg-green-500">Kirim</button>
+                                class="btn btn-success text-white bg-green-500 btn-lg">Kirim</button>
                         </div>
                     </form>
                 </div>
             </div>
         </dialog>
     </div>
-    <script>
-        function showTransactionDetail(transaction) {
-            const modal = document.getElementById('Detail_Modal');
-            const date = document.getElementById('transactionDetailDate');
-            const amount = document.getElementById('transactionDetailAmount');
-            const status = document.getElementById('transactionDetailStatus');
-
-            date.textContent = transaction.TransactionDate;
-            amount.textContent = 'Rp' + (transaction.PricePerKg * transaction.Quantity);
-            status.textContent = transaction.Status;
-
-            modal.showModal();
-        }
-    </script>
+</div>
 </div>

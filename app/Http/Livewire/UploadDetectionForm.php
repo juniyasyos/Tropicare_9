@@ -59,8 +59,8 @@ class UploadDetectionForm extends Component
         $imageData = file_get_contents(storage_path('app/' . $storedImagePath));
         $data = base64_encode($imageData);
 
-        $api_key = "ocI0aRkXvOCRimVsznZU"; // Set API Key
-        $model_endpoint = "p_diseases/1"; // Set model endpoint (Found in Dataset URL)
+        $api_key = "ocI0aRkXvOCRimVsznZU";
+        $model_endpoint = "p_diseases/1";
 
         // URL for Http Request
         $url = "https://detect.roboflow.com/" . $model_endpoint . "?api_key=" . $api_key;

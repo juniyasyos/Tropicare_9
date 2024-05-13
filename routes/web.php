@@ -38,8 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/rekapitulasi/pengeluaran', [RekapitulasiController::class, 'pengeluaran'])->name('rekapitulasi.pengeluaran');
     Route::get('/rekapitulasi/laporan', [RekapitulasiController::class, 'laporan'])->name('rekapitulasi.laporan');
     Route::post('/rekapitulasi/laporan/add_notas', [RekapitulasiController::class, 'prosesFormAddNota'])->name('penjualan.add');
-
-
+    Route::post('/rekapitulasi/laporan/add_pengeluaran', [RekapitulasiController::class, 'prosesFormAddExpend'])->name('pengeluaran.add');
 });
 
 require __DIR__ . '/auth.php';

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Rekapitulasi;
 
 use Livewire\Component;
-use App\Models\Transaction;
+use App\Models\Expenditure;
 use Carbon\Carbon;
 
-class PenjualanSection extends Component
+class PengeluaranSection extends Component
 {
-    public $transactions;
+    public $expenditures;
     public $selectedMonth;
     public $startDate;
     public $endDate;
@@ -19,16 +19,9 @@ class PenjualanSection extends Component
         $this->setDateRange(Carbon::now()->startOfMonth(), Carbon::now());
     }
 
-    public function render()
-    {
-        $this->fetchTransactions();
-        return view('livewire.penjualan-section', [
-            'transactions' => $this->transactions
-        ]);
-    }
-
     public function filterDate($option)
     {
+        // Set tanggal mulai dan akhir sesuai dengan opsi filter yang dipilih
         switch ($option) {
             case 'today':
                 $this->setDateRange(Carbon::now(), Carbon::now());
@@ -51,12 +44,7 @@ class PenjualanSection extends Component
             $this->setDateRange(Carbon::now()->startOfMonth(), Carbon::now());
         }
 
-        $this->fetchTransactions();
-    }
-
-    public function showTransactionDetail($transactionId)
-    {
-        $this->selectedTransactionId = $transactionId;
+        $this->fetchExpenditures();
     }
 
     private function setDateRange($start, $end)
@@ -72,10 +60,10 @@ class PenjualanSection extends Component
         $this->endDate = Carbon::parse($this->startDate)->endOfMonth()->format('Y-m-d');
 
         if (Carbon::parse($this->selectedMonth)->isCurrentMonth()) {
-            $this->transactions = [];
+            $this->expenditures = [];
         }
 
-        $this->fetchTransactions();
+        $this->fetchExpenditures();
     }
 
     private function moveToNextMonth()
@@ -85,14 +73,23 @@ class PenjualanSection extends Component
         $this->endDate = Carbon::parse($this->startDate)->endOfMonth()->format('Y-m-d');
 
         if (Carbon::parse($this->selectedMonth)->isCurrentMonth()) {
-            $this->transactions = [];
+            $this->expenditures = [];
         }
 
-        $this->fetchTransactions();
+        $this->fetchExpenditures();
     }
 
-    private function fetchTransactions()
+
+    private function fetchExpenditures()
     {
-        $this->transactions = Transaction::whereBetween('TransactionDate', [$this->startDate, $this->endDate])->get();
+        $this->expenditures = Expenditure::whereBetween('ExpenditureDate', [$this->startDate, $this->endDate])->get();
+    }
+
+    public function render()
+    {
+        $this->fetchExpenditures();
+        return view('livewire.rekapitulasi.pengeluaran-section', [
+            'expenditures' => $this->expenditures
+        ]);
     }
 }
