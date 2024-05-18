@@ -27,14 +27,19 @@ class UploadDetectionForm extends Component
         $this->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096',
         ]);
-        // // Simpan foto ke direktori yang sesuai dengan kebutuhan Anda
-        // $path = $this->photo->store('photos');
 
-        // session()->flash('message', 'Foto berhasil diunggah.');
+        // Debugging: Cek apakah file diterima
+        if ($this->photo) {
+            logger()->info('File uploaded:', ['photo' => $this->photo->getClientOriginalName()]);
+        } else {
+            logger()->error('No file uploaded.');
+        }
     }
 
     public function postData()
     {
+        $this->uploadData();
+        
         try {
             $user = Auth::user();
             if (!$user) {

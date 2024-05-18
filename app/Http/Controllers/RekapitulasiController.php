@@ -75,6 +75,42 @@ class RekapitulasiController extends Controller
         }
     }
 
+    public function prosesFormEditNota(Request $request)
+    {
+        try {
+            // Validasi data
+            $validatedData = $request->validate([
+                'id_list' => 'required|numeric',
+                'nama_barang' => 'required|string|max:255',
+                'tanggal' => 'required|date',
+                'barang_kg' => 'required|integer',
+                'harga_per_pcs' => 'required|numeric',
+            ]);
+
+            // Temukan transaksi yang akan diedit
+            $transaction = Transaction::findOrFail($validatedData['id_list']);
+
+            // Periksa apakah pengguna masuk dan pemilik transaksi
+            if (Auth::check() && $transaction->UserId === Auth::id()) {
+                // Isi atribut-atribut dengan data yang diterima dari formulir
+                $transaction->NameObject = $validatedData['nama_barang'];
+                $transaction->TransactionDate = $validatedData['tanggal'];
+                $transaction->Quantity = $validatedData['barang_kg'];
+                $transaction->PricePerKg = $validatedData['harga_per_pcs'];
+                $transaction->save();
+
+                // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+                return back()->with('data_updated', 'Data telah diperbarui.');
+            } else {
+                return back()->withErrors(['error' => 'Unauthorized or transaction not found.']);
+            }
+        } catch (\Exception $e) {
+            // Tangani kesalahan
+            return back()->withInput()->withErrors(['error' => 'Gagal memperbarui data. Silakan coba lagi.']);
+        }
+    }
+
+
     public function prosesFormAddExpend(Request $request)
     {
         // Validasi data

@@ -20,6 +20,8 @@
         "tailwindcss": "^3.4.3"
     },
     "dependencies": {
-        "daisyui": "^4.10.2"
+        "apexcharts": "^3.49.1",
+        "daisyui": "^4.10.2",
+        "flowbite": "^2.3.0"
     }
 }

@@ -3,27 +3,40 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\Transaction;
 use Carbon\Carbon;
 
 class PenjualanSection extends Component
 {
-    public $transactions;
+    use WithPagination;
+
     public $selectedMonth;
     public $startDate;
     public $endDate;
+    public $allTransaction;
+
+    protected $paginationTheme = 'bootstrap';
 
     public function mount()
     {
         $this->selectedMonth = Carbon::now()->format('F');
         $this->setDateRange(Carbon::now()->startOfMonth(), Carbon::now());
+        $this->Allmount();
+    }
+
+    public function Allmount()
+    {
+        $this->allTransaction = Transaction::whereMonth('TransactionDate', Carbon::now()->month)
+            ->whereYear('TransactionDate', Carbon::now()->year)
+            ->sum(\DB::raw('PricePerKg * Quantity'));
     }
 
     public function render()
     {
-        $this->fetchTransactions();
+        $transactions = $this->fetchTransactions();
         return view('livewire.penjualan-section', [
-            'transactions' => $this->transactions
+            'transactions' => $transactions
         ]);
     }
 
@@ -39,6 +52,9 @@ class PenjualanSection extends Component
             case 'last7days':
                 $this->setDateRange(Carbon::now()->subDays(6), Carbon::now());
                 break;
+            case '30days':
+                $this->setDateRange(Carbon::now()->subDays(30), Carbon::now());
+                break;
             case 'prev':
                 $this->moveToPreviousMonth();
                 break;
@@ -51,12 +67,7 @@ class PenjualanSection extends Component
             $this->setDateRange(Carbon::now()->startOfMonth(), Carbon::now());
         }
 
-        $this->fetchTransactions();
-    }
-
-    public function showTransactionDetail($transactionId)
-    {
-        $this->selectedTransactionId = $transactionId;
+        $this->resetPage();
     }
 
     private function setDateRange($start, $end)
@@ -71,11 +82,7 @@ class PenjualanSection extends Component
         $this->startDate = Carbon::parse($this->startDate)->subMonth()->startOfMonth()->format('Y-m-d');
         $this->endDate = Carbon::parse($this->startDate)->endOfMonth()->format('Y-m-d');
 
-        if (Carbon::parse($this->selectedMonth)->isCurrentMonth()) {
-            $this->transactions = [];
-        }
-
-        $this->fetchTransactions();
+        $this->resetPage();
     }
 
     private function moveToNextMonth()
@@ -84,15 +91,11 @@ class PenjualanSection extends Component
         $this->startDate = Carbon::parse($this->startDate)->addMonth()->startOfMonth()->format('Y-m-d');
         $this->endDate = Carbon::parse($this->startDate)->endOfMonth()->format('Y-m-d');
 
-        if (Carbon::parse($this->selectedMonth)->isCurrentMonth()) {
-            $this->transactions = [];
-        }
-
-        $this->fetchTransactions();
+        $this->resetPage();
     }
 
     private function fetchTransactions()
     {
-        $this->transactions = Transaction::whereBetween('TransactionDate', [$this->startDate, $this->endDate])->get();
+        return Transaction::whereBetween('TransactionDate', [$this->startDate, $this->endDate])->paginate(15);
     }
 }
