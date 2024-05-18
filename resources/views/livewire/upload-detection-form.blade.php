@@ -1,43 +1,48 @@
 <div>
-    <form wire:submit.prevent="uploadData" enctype="multipart/form-data">
-        <div class="custom-file-input border-2 border-gray-300 border-dashed rounded-md bg-white h-64 mt-4 w-80 mx-auto">
+    <form wire:submit.prevent="postData" enctype="multipart/form-data">
+        <div
+            class="relative custom-file-input border-2 border-gray-300 border-dashed rounded-md bg-white dark:bg-gray-700 h-64 mt-4 w-full max-w-md mx-auto">
             @if (!$photo)
-                <input wire:model="photo" id="filePicker" name="img" type="file" class="file-input" accept="image/*">
+                <input wire:model="photo" id="filePicker" name="img" type="file"
+                    class="file-input absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*">
             @endif
+
             <a class="btn bg-gray-900 absolute top-2 right-2 rounded-full btn-xs text-white {{ $photo ? '' : 'hidden' }}"
                 wire:click="clearPhoto">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-2" fill="none" viewBox="0 0 24 24"
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </a>
             <img wire:model="photo" src="{{ $photo ? $photo->temporaryUrl() : '' }}" alt="Preview"
-                class="{{ $photo ? '' : 'hidden' }} m-auto">
+                class="{{ $photo ? '' : 'hidden' }} m-auto h-full object-cover rounded-md">
             <div id="fileInputOverlay" class="flex items-center justify-center h-full">
                 <div class="space-y-1 text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
-                    <p class="text-sm text-gray-600">Seret atau klik file di sini</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Seret atau klik file di sini</p>
                 </div>
             </div>
         </div>
         @error('photo')
             <div class="text-red-500 text-sm">{{ $message }}</div>
         @enderror
-        <div class="px-6 py-4 flex justify-end">
-            <button type="submit" wire:click="postData" wire:loading.attr="disabled"
-                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded btn {{ $photo ? '' : 'btn-disabled' }}">Deteksi</button>
+        <div class="px-6 py-4 flex justify-end md:justify-center">
+            <button type="submit" wire:loading.attr="disabled"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded btn {{ $photo ? '' : 'btn-disabled' }} md:px-44">Deteksi</button>
         </div>
     </form>
+
 
     @if ($disease)
         @if ($disease !== 'sehat')
             <div class="flex-grow pb-10 mt-6">
                 <div class="px-6">
                     <div class="mt-10 flex justify-center">
-                        <div class="w-full max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow-lg">
+                        <div
+                            class="w-full max-w-lg sm:max-w-xl md:max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow-lg">
                             <h5 class="mb-4 text-lg font-semibold text-green-500">Deteksi Berhasil!</h5>
                             <div class="border-b border-gray-300 py-4">
                                 <div class="flex items-center">
@@ -101,8 +106,7 @@
             </div>
         @endif
     @else
-        <div class="mt-6 flex w-full mx-auto" id="loadingContainer" wire:target="upload" wire:loading
-            wire:target="uploadImage">
+        <div class="mt-6 flex w-full mx-auto" id="loadingContainer" wire:loading wire:target="postData">
             <div class="flex flex-col gap-4 w-10/12 mx-auto text-center">
                 <div class="flex justify-center">
                     <h1 class="text-sm font-alata text-gray-600">Memproses hasil deteksi</h1>

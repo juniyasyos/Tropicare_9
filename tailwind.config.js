@@ -1,12 +1,14 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const tailwindForms = require("@tailwindcss/forms");
 const daisyUi = require("daisyui");
+const flowbite = require("flowbite/plugin");
 
 module.exports = {
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
+        "./node_modules/flowbite/**/*.js",
     ],
 
     theme: {
@@ -59,7 +61,14 @@ module.exports = {
             }
         },
     },
-    plugins: [tailwindForms, daisyUi],
+    plugins: [
+        tailwindForms,
+        daisyUi,
+        defaultTheme,
+        flowbite({
+            charts: true,
+        })
+    ],
     darkMode: "class",
     daisyui: {
         themes: ["light", "dark", "cupcake"],

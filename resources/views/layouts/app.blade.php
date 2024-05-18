@@ -18,38 +18,6 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        @import url(https://pro.fontawesome.com/releases/v5.10.0/css/all.css);
-
-        .custom-file-input {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .custom-file-input input[type="file"] {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            cursor: pointer;
-            height: 100%;
-            width: 100%;
-        }
-
-        .custom-file-input img {
-            max-width: 180%;
-            max-height: 180px;
-        }
-    </style>
-    <!-----------------------------------------------------------
-    -- animate.min.css by Daniel Eden (https://animate.style)
-    -- is required for the animation of notifications and slide out panels
-    -- you can ignore this step if you already have this file in your project
-    --------------------------------------------------------------------------->
-    <link href="{{ asset('vendor/bladewind/css/animate.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('vendor/bladewind/css/bladewind-ui.min.css') }}" rel="stylesheet" />
-    <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
 
     {{-- Livewire styles --}}
@@ -62,17 +30,29 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="flex items-center justify-center mx-auto">
-        <div class="h-screen text-black">
-            <div class="flex-grow">
+    <div>
+        <div class="h-screen text-black bg-gray-100">
+            <div class="flex-grow bg-gray-100">
                 <!-- Page Heading -->
                 @if (isset($header))
                     <header>
                         {{ $header }}
+
+                        <!-- Header for Tablet and Desktop -->
+                        <div class="w-full fixed z-10 hidden md:block lg:block">
+                            <div class="navbar bg-white">
+                                <div class="navbar-start">
+                                    <img src="{{ asset('storage/src/image/logo.png') }}" alt="">
+                                    <a class="btn btn-ghost text-xl font-tienne text-[28px]">Tropicare</a>
+                                </div>
+                            </div>
+                        </div>
                     </header>
                 @endif
+
                 <!-- Page Content -->
-                <main class="pb-28">
+                <main class="pb-28 z-0 md:pt-[80px] lg:pt-[80px]">
+                    @include('components.sidebar')
                     {{ $slot }}
                 </main>
             </div>
@@ -82,5 +62,9 @@
     @livewireScripts
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('/sw.js') }}"></script>
+    @if (@isset($AddScript))
+        {{ $AddScript }}
+    @endif
 </body>
+
 </html>
