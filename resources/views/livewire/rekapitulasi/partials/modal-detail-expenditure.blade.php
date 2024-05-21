@@ -1,7 +1,7 @@
 <div class="flex justify-center bg-white pb-10">
-    <dialog id="editFormDataTransaction" class="modal">
+    <dialog id="editFormDataExpenditure" class="modal">
         <div class="modal-box">
-            <h3 class="font-bold text-lg mb-5">Edit Nota</h3>
+            <h3 class="font-bold text-lg mb-5">Edit Pengeluaran</h3>
             <form method="dialog">
                 <button class="absolute top-2 right-2" onclick="closeEditModal()">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -12,7 +12,7 @@
                 </button>
             </form>
             <div class="py-4">
-                <form id="editForm" method="POST" action="{{ route('penjualan.edit') }}">
+                <form id="editForm" method="POST" action="{{ route('pengeluaran.edit') }}">
                     @csrf
                     <div class="mb-4 hidden">
                         <label for="id_list" class="block text-sm font-medium text-gray-700">id</label>
@@ -30,22 +30,16 @@
                             class="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                     </div>
                     <div class="mb-4">
-                        <label for="barang_kg" class="block text-sm font-medium text-gray-700">Jumlah Barang per
-                            Kg</label>
-                        <input type="number" id="barang_kg" name="barang_kg"
-                            class="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                        <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi</label>
+                        <textarea id="description" name="description" rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Write your thoughts here..."></textarea>
                     </div>
                     <div class="mb-4">
-                        <label for="harga_per_pcs" class="block text-sm font-medium text-gray-700">Harga Per Kg</label>
-                        <input type="number" id="harga_per_pcs" name="harga_per_pcs" step="0.01"
+                        <label for="amount" class="block text-sm font-medium text-gray-700">Total Pengeluaran</label>
+                        <input type="number" id="amount" name="amount" step="0.01"
                             class="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                     </div>
-                    <div class="mb-4">
-                        <label for="amount" class="block text-sm font-medium text-gray-700">Total</label>
-                        <input type="number" id="amount" name="amount" step="0.01" disabled
-                            class="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
-                    </div>
-
                     <div class="flex justify-center space-x-4 w-full px-2">
                         <button type="button" onclick="showDeleteModal()"
                             class="btn btn-error text-white bg-red-500 w-1/2">Hapus</button>
@@ -56,7 +50,7 @@
         </div>
     </dialog>
 
-    <dialog id="deleteFormDataTransaction" class="modal">
+    <dialog id="deleteFormDataExpenditure" class="modal">
         <div class="modal-box">
             <form method="dialog">
                 <button class="absolute top-2 right-2" onclick="closeDeleteModal()">
@@ -80,7 +74,7 @@
                     <table class="w-full text-left text-gray-700">
                         <tbody>
                             <tr class="border-b">
-                                <th class="py-2 font-bold">Nama Barang</th>
+                                <th class="py-2 font-bold">Nama Pengeluaran</th>
                                 <td id="nama_barang_del" class="py-2 font-medium">[Nama Barang]</td>
                             </tr>
                             <tr class="border-b">
@@ -88,19 +82,19 @@
                                 <td id="tanggal_del" class="py-2 font-medium">[Tanggal]</td>
                             </tr>
                             <tr class="border-b">
-                                <th class="py-2 font-bold">Berat Barang (kg)</th>
-                                <td id="barang_kg_del" class="py-2 font-medium">[Berat Barang]</td>
+                                <th class="py-2 font-bold">Tanggal</th>
+                                <td id="description_del" class="py-2 font-medium">[Tanggal]</td>
                             </tr>
                             <tr>
-                                <th class="py-2 font-bold">Harga per Kg</th>
-                                <td id="harga_per_pcs_del" class="py-2 font-medium">[Harga per Pcs]</td>
+                                <th class="py-2 font-bold">Total Pengeluaran</th>
+                                <td id="amount_del" class="py-2 font-medium">[Pengeluaran]</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="py-4">
-                <form id="deleteForm" method="POST" action="{{ route('penjualan.del') }}">
+                <form id="deleteForm" method="POST" action="{{ route('pengeluaran.del') }}">
                     @csrf
                     <div class="mb-4 hidden">
                         <label for="id_delete" class="block text-sm font-medium text-gray-700">id</label>

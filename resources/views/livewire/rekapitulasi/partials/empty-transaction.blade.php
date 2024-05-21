@@ -1,5 +1,5 @@
 <div class="bg-gray-100 p-6 rounded-lg shadow-md text-center">
-    <p class="text-gray-500">Tidak ada transaksi</p>
+    <p class="text-gray-500">{{ $message }}</p>
     <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="none" class="mx-auto mt-4"
         viewBox="0 0 3001 3001" id="payment-error">
         <g clip-path="url(#clip0_101_35704)">

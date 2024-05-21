@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RekapitulasiController;
+use App\Http\Controllers\Rekapitulasi\RekapitulasiController;
 use App\Http\Controllers\Detection\DetectController;
 
 /*
@@ -52,14 +52,24 @@ Route::middleware('auth')->group(function () {
     Route::get('/rekapitulasi/laporan', [RekapitulasiController::class, 'laporan'])->name('rekapitulasi.laporan');
 
     /*
-    Routes untuk melakukan penambahan data pada laporan
+    Routes untuk melakukan crud data pada penjualan
     */
     // Route untuk menangani form penambahan nota penjualan
-    Route::post('/rekapitulasi/laporan/add_notas', [RekapitulasiController::class, 'prosesFormAddNota'])->name('penjualan.add');
+    Route::post('/rekapitulasi/penjualan/add_notas', [RekapitulasiController::class, 'prosesFormAddNota'])->name('penjualan.add');
     // Route untuk menangani form update nota penjualan
-    Route::post('/rekapitulasi/laporan/edit_notas', [RekapitulasiController::class, 'prosesFormEditNota'])->name('penjualan.edit');
+    Route::post('/rekapitulasi/penjualan/edit_notas', [RekapitulasiController::class, 'prosesFormEditNota'])->name('penjualan.edit');
+    // Route untuk menangani form delete nota penjualan
+    Route::post('/rekapitulasi/penjualan/del_notas', [RekapitulasiController::class, 'prosesFormDeleteNota'])->name('penjualan.del');
+
+    /*
+    Routes untuk melakukan crud data pada pengeluaran
+    */
     // Route untuk menangani form penambahan pengeluaran
-    Route::post('/rekapitulasi/laporan/add_pengeluaran', [RekapitulasiController::class, 'prosesFormAddExpend'])->name('pengeluaran.add');
+    Route::post('/rekapitulasi/pengeluaran/add_expenditure', [RekapitulasiController::class, 'prosesFormAddExpend'])->name('pengeluaran.add');
+    // Route untuk menangani form update pengeluaran
+    Route::post('/rekapitulasi/pengeluaran/edit_expenditure', [RekapitulasiController::class, 'prosesFormEditExpend'])->name('pengeluaran.edit');
+    // Route untuk menangani form delete pengeluaran
+    Route::post('/rekapitulasi/pengeluaran/del_expenditure', [RekapitulasiController::class, 'prosesFormDeleteExpend'])->name('pengeluaran.del');
 
 });
 

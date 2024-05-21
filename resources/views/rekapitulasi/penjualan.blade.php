@@ -1,5 +1,4 @@
 <x-app-layout>
-    @include('components.navigation-bottom-bar')
     <x-slot name="header">
         <div class="navbar sm:block md:hidden lg:hidden">
             <div class="navbar-start">
@@ -19,19 +18,19 @@
         </div>
     </x-slot>
 
-    <div class="p-4 md:ml-64">
+    <div class="md:p-4 md:ml-64">
         <div class="bg-white h-auto rounded-lg">
             <div class="pt-6 pb-3">
                 <div class="text-center sm:text-left ml-4">
                     <div class="text-sm breadcrumbs hidden md:block lg:block">
                         <ul>
                             <li>
-                                <a class="font-semibold text-lg">
+                                <a href="{{route('dashboard')}}" class="font-semibold text-lg">
                                     Dashboard
                                 </a>
                             </li>
                             <li>
-                                <a class="text-lg font-semibold">
+                                <a href="{{ route('rekapitulasi.show') }}" class="text-lg font-semibold">
                                     Rekapitulasi
                                 </a>
                             </li>
@@ -44,27 +43,45 @@
                     </div>
                 </div>
             </div>
-            <div class="container mx-auto p-6 mt-[-20px]">
-                <livewire:penjualan-section />
+            <div class="container mx-auto md:p-6 mt-[-20px]">
+                <livewire:rekapitulasi.penjualan-section />
             </div>
         </div>
     </div>
     <x-slot name="AddScript">
         <script>
             function showTransactionEdit(transaction) {
-                const modal = document.getElementById('editFormDataTransaction');
+                const modalEdit = document.getElementById('editFormDataTransaction');
                 document.getElementById('id_list').value = transaction.TransactionID;
+                document.getElementById('id_delete').value = transaction.TransactionID;
+
                 document.getElementById('nama_barang').value = transaction.NameObject;
                 document.getElementById('tanggal').value = transaction.TransactionDate;
                 document.getElementById('barang_kg').value = transaction.Quantity;
                 document.getElementById('harga_per_pcs').value = (transaction.PricePerKg * 1).toFixed(0);
                 document.getElementById('amount').value = (transaction.PricePerKg * transaction.Quantity).toFixed(0);
 
-                modal.showModal();
+                // Mengisi teks pada elemen <p> atau <span>
+                document.getElementById('nama_barang_del').textContent = transaction.NameObject;
+                document.getElementById('tanggal_del').textContent = transaction.TransactionDate;
+                document.getElementById('barang_kg_del').textContent = transaction.Quantity;
+                document.getElementById('harga_per_pcs_del').textContent = (transaction.PricePerKg * 1).toFixed(0);
+
+                modalEdit.showModal();
             }
 
             function closeEditModal() {
                 const modal = document.getElementById('editFormDataTransaction');
+                modal.close();
+            }
+
+            function showDeleteModal() {
+                const modal = document.getElementById('deleteFormDataTransaction');
+                modal.showModal();
+            }
+
+            function closeDeleteModal() {
+                const modal = document.getElementById('deleteFormDataTransaction');
                 modal.close();
             }
         </script>

@@ -1,5 +1,4 @@
 <x-app-layout>
-    @include('components.navigation-bottom-bar')
     <x-slot name="header">
         <!-- Header for Tablet and Desktop -->
         <div class="w-full fixed hidden md:block lg:block">
@@ -36,13 +35,13 @@
                     <div class="text-sm breadcrumbs hidden md:block lg:block">
                         <ul>
                             <li>
-                                <a class="font-semibold text-lg">
+                                <a href="{{ route('dashboard') }}" class="font-semibold text-lg">
                                     Dashboard
                                 </a>
                             </li>
                             <li>
-                                <a class="font-semibold text-lg">
-                                    Deteksi
+                                <a href="{{ route('detection.show') }}" class="font-semibold text-lg">
+                                    Detection
                                 </a>
                             </li>
                             <li>
@@ -66,7 +65,7 @@
                                         Deteksi penyakit tanaman Anda menggunakan teknologi kami
                                     </h1>
                                 </div>
-                                <livewire:upload-detection-form />
+                                <livewire:detection.detect-form />
                             </div>
                         </div>
                     </div>

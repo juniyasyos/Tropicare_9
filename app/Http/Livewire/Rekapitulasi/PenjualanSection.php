@@ -4,18 +4,19 @@ namespace App\Http\Livewire\Rekapitulasi;
 
 use Carbon\Carbon;
 use Livewire\Component;
-use App\Models\Expenditure;
+use App\Models\Transaction;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 
-class PengeluaranSection extends Component
+class PenjualanSection extends Component
 {
     use WithPagination;
 
-    public $expenditures;
     public $selectedMonth;
     public $startDate;
     public $endDate;
+    public $allTransaction;
+
     protected $paginationTheme = 'bootstrap';
 
     public function mount()
@@ -27,11 +28,13 @@ class PengeluaranSection extends Component
 
     public function Allmount($startDate, $endDate)
     {
+        // Ambil ID user yang sedang login
         $userId = Auth::id();
 
-        $this->expenditures = Expenditure::where('UserId', $userId)
-            ->whereBetween('ExpenditureDate', [$startDate, $endDate])
-            ->sum(\DB::raw('Amount'));
+        // Hitung total pengeluaran user berdasarkan rentang tanggal
+        $this->allTransaction = Transaction::where('UserId', $userId)
+            ->whereBetween('TransactionDate', [$startDate, $endDate])
+            ->sum(\DB::raw('PricePerKg * Quantity'));
     }
 
     public function filterDate($option)
@@ -85,18 +88,21 @@ class PengeluaranSection extends Component
         $this->resetPage();
     }
 
-
-    private function fetchExpenditures()
+    private function fetchTransactions()
     {
+        // Ambil ID user yang sedang login
         $userId = Auth::id();
-        return Expenditure::where('UserId', $userId)->whereBetween('ExpenditureDate', [$this->startDate, $this->endDate])->get();
+
+        return Transaction::where('UserId', $userId)
+            ->whereBetween('TransactionDate', [$this->startDate, $this->endDate])
+            ->paginate(15);
     }
 
     public function render()
     {
-        $expenditure = $this->fetchExpenditures();
-        return view('livewire.rekapitulasi.pengeluaran-section', [
-            'expenditure' => $expenditure
+        $transactions = $this->fetchTransactions();
+        return view('livewire.rekapitulasi.penjualan-section', [
+            'transactions' => $transactions
         ]);
     }
 }

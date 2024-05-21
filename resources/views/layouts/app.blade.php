@@ -37,7 +37,6 @@
                 @if (isset($header))
                     <header>
                         {{ $header }}
-
                         <!-- Header for Tablet and Desktop -->
                         <div class="w-full fixed z-10 hidden md:block lg:block">
                             <div class="navbar bg-white">
@@ -64,6 +63,9 @@
     <script src="{{ asset('/sw.js') }}"></script>
     @if (@isset($AddScript))
         {{ $AddScript }}
+    @endif
+    @if (@isset($AddScriptSub))
+        {{ $AddScriptSub }}
     @endif
 </body>
 

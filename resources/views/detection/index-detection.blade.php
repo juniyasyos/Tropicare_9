@@ -1,5 +1,4 @@
 <x-app-layout>
-    @include('components.navigation-bottom-bar')
     <x-slot name="header">
         <div class="navbar sm:block md:hidden lg:hidden">
             <div class="navbar-start">
@@ -26,7 +25,7 @@
                     <div class="text-sm breadcrumbs hidden md:block lg:block">
                         <ul>
                             <li>
-                                <a class="font-semibold text-lg">
+                                <a href="{{ route('dashboard') }}" class="font-semibold text-lg">
                                     Dashboard
                                 </a>
                             </li>
@@ -44,7 +43,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 justify-center">
                     <!-- Deteksi Baru -->
                     <a href="{{ route('detection.detect') }}"
-                        class="flex flex-col items-center justify-center bg-white cursor-pointer dark:bg-gray-800 rounded-lg shadow-lg p-6 h-48 transform hover:scale-105 transition-transform">
+                        class="flex flex-col items-center justify-center bg-white cursor-pointer dark:bg-gray-800 rounded-lg shadow-lg p-6 h-48 transform hover:scale-105 transition-transform border border-gray-300">
                         <div class="flex items-center space-x-3 mb-4">
                             <div class="bg-primary-first p-2 rounded-full">
                                 <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
