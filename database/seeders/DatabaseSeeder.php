@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Expenditure;
+use App\Models\Transaction;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,5 +17,50 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        $this->expenditure();
+        $this->transaction();
+    }
+
+    private function transaction()
+    {
+        $faker = Faker::create();
+
+        $transactions = [];
+
+        for ($i = 1; $i <= 600; $i++) {
+            $transactions[] = [
+                'UserId' => 24010070,
+                'NameObject' => $faker->word,
+                'TransactionDate' => $faker->dateTimeBetween('2024-05-01', '2024-05-31')->format('Y-m-d'),
+                'Quantity' => $faker->numberBetween(100, 250),
+                'PricePerKg' => $faker->numberBetween(6000, 10000)
+            ];
+        }
+
+        // Menyisipkan data transactions ke dalam tabel transactions
+        foreach ($transactions as $transaction) {
+            Transaction::create($transaction);
+        }
+    }
+    private function expenditure()
+    {
+        $faker = Faker::create();
+
+        $expenditures = [];
+
+        for ($i = 1; $i <= 50; $i++) {
+            $expenditures[] = [
+                'UserId' => 24010070,
+                'NameExpenditure' => $faker->word,
+                'Description' => $faker->sentence,
+                'ExpenditureDate' => $faker->dateTimeBetween('2024-05-01', '2024-05-31')->format('Y-m-d'),
+                'Amount' => $faker->numberBetween(100000, 10000000)
+            ];
+        }
+
+        // Menyisipkan data expenditures ke dalam tabel expenditures
+        foreach ($expenditures as $exp) {
+            Expenditure::create($exp);
+        }
     }
 }
