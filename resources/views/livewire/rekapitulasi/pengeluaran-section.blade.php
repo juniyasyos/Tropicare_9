@@ -1,4 +1,4 @@
-<div class="h-screen mt-[-15px] rounded-sm">
+<div class="h-auto mt-[-15px] rounded-sm">
     <div class="mt-4 p-6 bg-white flex items-center space-x-6">
         <div>
             <h2 class="font-inter text-[18px] text-gray-900 font-semibold mb-1">Total Pengeluaran</h2>

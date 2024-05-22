@@ -18,6 +18,7 @@ class RekapitulasiController extends Controller
     protected $pengeluaran;
     protected $laporan;
 
+    //>>>>>> Controller Globall <<<<< //
     public function __construct()
     {
         $this->penjualan = new Penjualan();
@@ -91,20 +92,10 @@ class RekapitulasiController extends Controller
         return response()->json($data);
     }
 
+    //>>>>>> Controller penjualan <<<<< //
     public function penjualan()
     {
         return $this->penjualan->view();
-    }
-
-    public function pengeluaran()
-    {
-        return $this->pengeluaran->view();
-
-    }
-
-    public function laporan()
-    {
-        return $this->laporan->view();
     }
 
     public function prosesFormAddNota(Request $request)
@@ -120,18 +111,8 @@ class RekapitulasiController extends Controller
         try {
             // Periksa apakah pengguna masuk
             if (Auth::check()) {
-                // Buat instance objek Transaction
-                $transaction = new Transaction();
-
-                // Isi atribut-atribut sesuai dengan data yang diterima dari formulir
-                $transaction->NameObject = $validatedData['nama_barang'];
-                $transaction->TransactionDate = $validatedData['tanggal'];
-                $transaction->Quantity = $validatedData['barang_kg'];
-                $transaction->PricePerKg = $validatedData['harga_per_pcs'];
-                $transaction->UserId = Auth::id(); // Atur UserId dengan ID pengguna yang sedang masuk
-
-                // Simpan data ke dalam tabel transactions
-                $transaction->save();
+                // Proses add data kedatabase
+                $this->penjualan->create($validatedData);
 
                 // Redirect kembali ke halaman sebelumnya dengan pesan sukses
                 return back()->with('data_saved', 'Data telah tersimpan.');
@@ -162,12 +143,8 @@ class RekapitulasiController extends Controller
 
             // Periksa apakah pengguna masuk dan pemilik transaksi
             if (Auth::check() && $transaction->UserId === Auth::id()) {
-                // Isi atribut-atribut dengan data yang diterima dari formulir
-                $transaction->NameObject = $validatedData['nama_barang'];
-                $transaction->TransactionDate = $validatedData['tanggal'];
-                $transaction->Quantity = $validatedData['barang_kg'];
-                $transaction->PricePerKg = $validatedData['harga_per_pcs'];
-                $transaction->save();
+                // logic update data
+                $this->penjualan->update($validatedData, $transaction);
 
                 // Redirect kembali ke halaman sebelumnya dengan pesan sukses
                 return back()->with('data_updated', 'Data telah diperbarui.');
@@ -211,6 +188,13 @@ class RekapitulasiController extends Controller
         }
     }
 
+    //>>>>>> Controller pengeluaran <<<<< //
+    public function pengeluaran()
+    {
+        return $this->pengeluaran->view();
+
+    }
+
     public function prosesFormAddExpend(Request $request)
     {
         // Validasi data
@@ -224,23 +208,12 @@ class RekapitulasiController extends Controller
         try {
             // Periksa apakah pengguna masuk
             if (Auth::check()) {
-                // Buat instance objek Transaction
-                $expenditures = new Expenditure();
-
-                // Isi atribut-atribut sesuai dengan data yang diterima dari formulir
-                $expenditures->NameExpenditure = $validatedData['nama_barang'];
-                $expenditures->ExpenditureDate = $validatedData['tanggal'];
-                $expenditures->Description = $validatedData['description'];
-                $expenditures->Amount = $validatedData['amount'];
-                $expenditures->UserId = Auth::id();
-
-                // Simpan data ke dalam tabel expendituress
-                $expenditures->save();
+                // Proccess add data
+                $this->pengeluaran->create($validatedData);
 
                 // Redirect kembali ke halaman sebelumnya dengan pesan sukses
                 return back()->with('data_saved', 'Data telah tersimpan.');
             } else {
-                dd();
                 // Jika pengguna tidak masuk, lempar pengecualian
                 throw new \Exception('Pengguna tidak terautentikasi.');
             }
@@ -268,12 +241,8 @@ class RekapitulasiController extends Controller
 
             // Periksa apakah pengguna masuk dan pemilik transaksi
             if (Auth::check() && $expenditure->UserId === Auth::id()) {
-                // Isi atribut-atribut dengan data yang diterima dari formulir
-                $expenditure->NameExpenditure = $validatedData['nama_barang'];
-                $expenditure->ExpenditureDate = $validatedData['tanggal'];
-                $expenditure->Description = $validatedData['description'];
-                $expenditure->Amount = $validatedData['amount'];
-                $expenditure->save();
+                // Proccess update data
+                $this->pengeluaran->update($validatedData, $expenditure);
 
                 // Redirect kembali ke halaman sebelumnya dengan pesan sukses
                 return back()->with('data_updated', 'Data telah diperbarui.');
@@ -315,5 +284,11 @@ class RekapitulasiController extends Controller
             dd($e);
             return back()->withInput()->withErrors(['error' => 'Gagal menghapus data. Silakan coba lagi.']);
         }
+    }
+
+    //>>>>>> Controller laporan <<<<< //
+    public function laporan()
+    {
+        return $this->laporan->view();
     }
 }

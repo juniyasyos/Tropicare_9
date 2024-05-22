@@ -57,4 +57,11 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function exit(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        return Redirect::to('/');
+    }
 }

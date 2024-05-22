@@ -48,7 +48,6 @@ class RegisteredUserController extends Controller
             'folder' => $folderName,
         ]);
 
-
         event(new Registered($user));
 
         Auth::login($user);

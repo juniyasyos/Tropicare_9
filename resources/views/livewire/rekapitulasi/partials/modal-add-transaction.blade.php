@@ -28,8 +28,8 @@
                             class="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                     </div>
                     <div class="flex justify-end space-x-4">
-                        <button type="button" class="btn btn-outline btn-error" onclick="modalAddNota.close()">Close</button>
-                        <button type="submit" class="btn btn-success text-white bg-green-500">Kirim</button>
+                        <button type="button" class="btn w-3/12 btn-outline btn-error" onclick="modalAddNota.close()">Keluar</button>
+                        <button type="submit" class="btn w-3/12 btn-success text-white bg-green-500">Tambah</button>
                     </div>
                 </form>
             </div>

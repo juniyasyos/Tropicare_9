@@ -1,4 +1,4 @@
-<div class="col-span-3 w-[105%] md:w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6 md:mt-10">
+<div class="col-span-3 w-[105%] md:w-full bg-white rounded-lg shadow border border-gray-200 dark:bg-gray-800 p-4 md:p-6 md:mt-10">
     <h1 class="font-bold text-2xl text-gray-900 mb-5">Laporan</h1>
     <div class="flex justify-start mb-5">
         <div class="grid grid-cols-2 gap-5">
@@ -55,9 +55,9 @@
         </div>
     </div>
     <div id="line-chart" class="z-10"></div>
-    <div class="pt-5">
-        <a href="#"
-            class="px-5 py-2.5 text-sm font-medium text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    <div class="pt-5 flex justify-end md:justify-start">
+        <a href="{{ route('rekapitulasi.laporan') }}"
+            class="btn bg-primary-first text-white focus:ring-1 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <svg class="w-3.5 h-3.5 text-white me-2 rtl:rotate-180" aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
                 <path

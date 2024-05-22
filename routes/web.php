@@ -25,8 +25,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    /*
+    Routes untuk deteksi penyakit
+    */
+    // Route untuk menampilkan halaman index dari fitur detection
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/exit', [ProfileController::class, 'exit'])->name('profile.exit');
     Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     /*

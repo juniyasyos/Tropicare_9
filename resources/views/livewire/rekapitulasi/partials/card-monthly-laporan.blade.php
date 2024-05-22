@@ -1,6 +1,12 @@
 <script>
     const data = @json($chartData);
 
+    // Function to check if the screen width is less than a certain value (e.g., 768px for mobile)
+    function isMobileView() {
+        return window.innerWidth < 768;
+    }
+
+    // Define the chart options
     const options = {
         chart: {
             height: "100%",
@@ -17,7 +23,7 @@
         tooltip: {
             enabled: true,
             x: {
-                show: false,
+                show: true,
             },
         },
         dataLabels: {
@@ -36,18 +42,18 @@
             },
         },
         series: [{
-                name: "Expenditure",
+                name: "Pengeluaran",
                 data: data.map(item => item.expenditure),
                 color: "#F98080",
             },
             {
-                name: "Transaction",
+                name: "Penjualan",
                 data: data.map(item => item.transaction),
                 color: "#31C48D",
             },
         ],
         legend: {
-            show: false
+            show: true
         },
         stroke: {
             curve: 'smooth'
@@ -69,12 +75,24 @@
             },
         },
         yaxis: {
-            show: false,
+            show: !isMobileView(), // Conditionally show y-axis based on screen size
         },
     };
 
-    if (document.getElementById("line-chart") && typeof ApexCharts !== 'undefined') {
-        const chart = new ApexCharts(document.getElementById("line-chart"), options);
-        chart.render();
+    // Function to re-render the chart on window resize
+    function renderChart() {
+        if (document.getElementById("line-chart") && typeof ApexCharts !== 'undefined') {
+            const chart = new ApexCharts(document.getElementById("line-chart"), options);
+            chart.render();
+        }
     }
+
+    // Render the chart initially
+    renderChart();
+
+    // Add event listener for window resize to re-render the chart
+    window.addEventListener('resize', function() {
+        options.yaxis.show = !isMobileView();
+        renderChart();
+    });
 </script>

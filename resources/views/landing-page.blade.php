@@ -32,11 +32,11 @@
                             <img src="{{ asset('storage/src/image/logo.png') }}" alt="">
                             <a class="btn btn-ghost text-xl font-tienne text-[28px]">Tropicare</a>
                         </div>
-                        @auth
-                            <div class="navbar-end mr-4">
+                        {{-- @auth --}}
+                            {{-- <div class="navbar-end mr-4">
                                 <a href="{{ url('dashboard') }}"
                                     class="btn w-32 bg-blue-500 border-none text-white">Dashboard</a>
-                            </div>
+                            </div> --}}
                             {{-- @else
                             <div class="navbar-end mr-4 space-x-4">
                                 <a href="{{ route('register') }}" class="btn w-32 bg-blue-500 border-none text-white">Sign
@@ -45,7 +45,7 @@
                                     <a href="{{ route('login') }}" class="btn w-32 btn-outline">Login</a>
                                 @endif
                             </div> --}}
-                        @endauth
+                        {{-- @endauth --}}
                     </div>
                 @endif
             </div>

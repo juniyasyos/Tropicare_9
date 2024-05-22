@@ -18,7 +18,7 @@
         </div>
     </x-slot>
 
-    <div class="p-4 md:ml-64">
+    <div class="md:p-4 md:ml-64">
         <div class="bg-white h-auto rounded-lg">
             <div class="pt-6 pb-3">
                 <div class="text-center sm:text-left ml-4">
@@ -60,9 +60,10 @@
 
                     <!-- Penjelasan mengenai deteksinya -->
                     <div class="mb-6 col-span-2 ml-5">
-                        <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Deteksi Penyakit pada Pepaya
+                        <h1 class="text-lg md:text-xl lg:text-2xl font-semibold text-gray-800 dark:text-gray-200">
+                            Deteksi Penyakit pada Pepaya
                         </h1>
-                        <p class="text-gray-600 dark:text-gray-400 mt-2">
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-lg">
                             Identifikasi penyakit pepaya secara cepat dan akurat. Dapatkan panduan langkah-langkah
                             efektif untuk penanganan segera dan lindungi tanaman Anda.
                         </p>
@@ -81,75 +82,108 @@
 
                 {{-- List History --}}
 
-                <div class="grid gap-4 my-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div class="grid gap-4 my-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
                     <div
-                        class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        class="max-w-xs mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
                             <img src="https://source.unsplash.com/random/800x600?papaya" alt="Papaya Image"
                                 class="rounded-lg shadow-lg w-10/11 h-auto">
                         </a>
                         <div class="p-5">
                             <a href="#">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                <h5
+                                    class="mb-2 text-md md:text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                     Antracnose
                                 </h5>
                             </a>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p class="mb-3 text-sm md:text-lg font-normal text-gray-700 dark:text-gray-400">
                                 2 Mai 2024
                             </p>
-                            <a href="#"
-                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Detail
-                            </a>
+                            <div class="w-full flex justify-end">
+                                <a href="#"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Detail
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div
-                        class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        class="max-w-xs mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
                             <img src="https://source.unsplash.com/random/800x600?papaya" alt="Papaya Image"
                                 class="rounded-lg shadow-lg w-10/11 h-auto">
                         </a>
                         <div class="p-5">
                             <a href="#">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                <h5
+                                    class="mb-2 text-md md:text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                     Antracnose
                                 </h5>
                             </a>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p class="mb-3 text-sm md:text-lg font-normal text-gray-700 dark:text-gray-400">
                                 2 Mai 2024
                             </p>
-                            <a href="#"
-                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Detail
-                            </a>
+                            <div class="w-full flex justify-end">
+                                <a href="#"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Detail
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div
-                        class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        class="max-w-xs mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
                             <img src="https://source.unsplash.com/random/800x600?papaya" alt="Papaya Image"
                                 class="rounded-lg shadow-lg w-10/11 h-auto">
                         </a>
                         <div class="p-5">
                             <a href="#">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                <h5
+                                    class="mb-2 text-md md:text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                     Antracnose
                                 </h5>
                             </a>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            <p class="mb-3 text-sm md:text-lg font-normal text-gray-700 dark:text-gray-400">
                                 2 Mai 2024
                             </p>
-                            <a href="#"
-                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Detail
+                            <div class="w-full flex justify-end">
+                                <a href="#"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Detail
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="max-w-xs mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <a href="#">
+                            <img src="https://source.unsplash.com/random/800x600?papaya" alt="Papaya Image"
+                                class="rounded-lg shadow-lg w-10/11 h-auto">
+                        </a>
+                        <div class="p-5">
+                            <a href="#">
+                                <h5
+                                    class="mb-2 text-md md:text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                    Antracnose
+                                </h5>
                             </a>
+                            <p class="mb-3 text-sm md:text-lg font-normal text-gray-700 dark:text-gray-400">
+                                2 Mai 2024
+                            </p>
+                            <div class="w-full flex justify-end">
+                                <a href="#"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Detail
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex mt-5 justify-end items-center col-span-3">
+                <div class="flex mt-5 justify-center md:justify-end items-center col-span-3">
                     <a href="{{ route('detection.history') }}"
-                        class="text-[16px] font-semibold text-white btn bg-primary-first px-10">
+                        class="text-[16px] font-semibold text-white btn bg-primary-first px-10 w-8/12 md:w-2/12">
                         Semua histori
                     </a>
                 </div>

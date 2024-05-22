@@ -1,6 +1,6 @@
 {{-- Penjualan --}}
 <div
-    class="bg-white rounded-lg shadow dark:bg-gray-800 p-4 flex flex-col justify-between transform transition-all duration-300 hover:bg-gray-100 active:bg-gray-200 cursor-pointer">
+    class="bg-white rounded-lg shadow dark:bg-gray-800 p-4 flex flex-col justify-between transform transition-all duration-300 hover:bg-gray-100 active:bg-gray-200 cursor-pointer border border-gray-200">
     <!-- Header -->
     <div class="flex items-center space-x-3">
         <div class="w-8 h-8">

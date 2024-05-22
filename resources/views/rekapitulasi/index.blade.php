@@ -32,7 +32,7 @@
         </div>
     </x-slot>
 
-    <div class="p-4 md:ml-64">
+    <div class="lg:p-4 md:ml-64 mt-5">
         <div class="bg-white h-auto rounded-lg">
             <div class="pt-6 pb-3">
                 <div class="text-center sm:text-left ml-4">

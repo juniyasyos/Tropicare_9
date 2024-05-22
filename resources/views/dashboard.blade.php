@@ -10,14 +10,14 @@
         </div>
     </x-slot>
 
-    <div class="p-4 md:ml-64">
+    <div class="md:p-4 md:ml-64">
         <div class="bg-white h-screen rounded-lg">
             <div class="pt-6 pb-3">
                 <!-- Contoh 1: Tata Letak Center dan Kanan -->
                 <div class="text-center sm:text-left ml-4">
 
                     <div class="text-sm breadcrumbs">
-                        <ul>
+                        <ul class="flex justify-center md:justify-start">
                             <li>
                                 <a class="text-md font-semibold text-lg">
                                     Dashboard
