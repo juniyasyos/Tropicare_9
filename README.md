@@ -77,5 +77,5 @@ php artisan db:seed --class=DatabaseSeeder
 5. Buat pull request baru
 
 
-#Lisensi
-Tropicase dilisensikan di bawah MIT License.
+# Lisensi
+Tropicare dilisensikan di bawah MIT License.
