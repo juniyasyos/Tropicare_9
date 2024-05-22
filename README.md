@@ -81,7 +81,7 @@ php artisan db:seed --class=DatabaseSeeder
 
 MIT License
 
-Copyright (c) [2024] [ggroupplagro]
+Copyright (c) 2024 ggroupplagro
 
 Team
 - Project Manager  : -
