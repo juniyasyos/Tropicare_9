@@ -40,7 +40,7 @@
             </div>
 
             <div class="container mx-auto p-6 mt-[-20px]">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 justify-center">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     <!-- Deteksi Baru -->
                     <a href="{{ route('detection.detect') }}"
                         class="flex flex-col items-center justify-center bg-white cursor-pointer dark:bg-gray-800 rounded-lg shadow-lg p-6 h-48 transform hover:scale-105 transition-transform border border-gray-300">
