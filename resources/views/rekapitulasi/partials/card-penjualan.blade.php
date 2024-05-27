@@ -27,7 +27,7 @@
     <div class="mt-4">
         <a href="{{ route('rekapitulasi.penjualan') }}"
             class="btn w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-500 active:bg-green-600 transition-colors duration-300">
-            Lihat Detail
+            Detail Penjualan
         </a>
     </div>
 </div>

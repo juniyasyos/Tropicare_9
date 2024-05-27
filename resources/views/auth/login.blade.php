@@ -19,13 +19,14 @@
                 <p class="text-[15px] text-white font-inter mb-[50px]">Silahkan masuk ke akun anda</p>
             </div>
 
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
             {{-- Email Addres --}}
             <div class="space-y-2">
                 <x-input-label for="email" :value="__('Email')" />
                 <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus
-                autocomplete="username" />
+                    autocomplete="username" />
                 <div id="emailValidationMessage" class="text-red-500 text-sm mt-1"></div>
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
             {{-- Password --}}
@@ -33,7 +34,6 @@
                 <x-input-label for="password" :value="__('Password')" />
                 <x-text-input id="password" type="password" name="password" required autocomplete="current-password" />
                 <div id="passwordValidationMessage" class="text-red-500 text-sm mt-1"></div>
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
             <div class="flex justify-end mt-5">

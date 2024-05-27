@@ -31,7 +31,7 @@
                             </li>
                             <li>
                                 <a class="text-lg">
-                                    Deteksi
+                                    Deteksi Penyakit
                                 </a>
                             </li>
                         </ul>
@@ -84,7 +84,7 @@
 
                 <div class="grid gap-4 my-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
                     @if ($detections->isEmpty())
-                        <div class="flex flex-col items-center justify-center">
+                        <div class="flex flex-col items-center justify-center col-span-full">
                             <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
                                 enable-background="new 0 0 512 512" viewBox="0 0 512 512" id="empty-folder">
                                 <polygon fill="none" stroke="#4A486A" stroke-linecap="round" stroke-linejoin="round"
@@ -211,8 +211,8 @@
                             <div
                                 class="max-w-xs mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                 <!-- Skeleton loading untuk gambar -->
-                                <div class="skeleton w-full h-48" aria-hidden="{{ $index == 0 ? 'false' : 'true' }}">
-                                </div>
+                                {{-- <div class="skeleton w-full h-48" aria-hidden="{{ $index == 0 ? 'false' : 'true' }}">
+                                </div> --}}
                                 <!-- Gambar yang sudah dimuat -->
                                 <img src="{{ asset('storage/' . $detection->PlantPhoto) }}" alt="Plant Image"
                                     class="rounded-lg shadow-lg w-10/11 h-auto"

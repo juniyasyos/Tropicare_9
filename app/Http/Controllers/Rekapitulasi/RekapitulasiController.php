@@ -26,7 +26,7 @@ class RekapitulasiController extends Controller
         $this->laporan = new Laporan();
     }
 
-    public function rekapitulasi()
+    public function showRekapitulasi()
     {
         if (Auth::check()) {
             $userId = Auth::id();
@@ -93,7 +93,7 @@ class RekapitulasiController extends Controller
     }
 
     //>>>>>> Controller penjualan <<<<< //
-    public function penjualan()
+    public function showPenjualan()
     {
         return $this->penjualan->view();
     }
@@ -189,7 +189,7 @@ class RekapitulasiController extends Controller
     }
 
     //>>>>>> Controller pengeluaran <<<<< //
-    public function pengeluaran()
+    public function showPengeluaran()
     {
         return $this->pengeluaran->view();
 

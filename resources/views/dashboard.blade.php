@@ -60,7 +60,7 @@
                         <a href="{{ route('detection.show') }}"
                             class="btn w-1/2 right-0 rounded-full bg-primary-second hover:bg-white hover:text-black text-white font-inter font-bold mt-5"
                             style="border: none;">
-                            Lanjutkan
+                            Deteksi
                         </a>
                     </div>
                 </div>
@@ -129,7 +129,7 @@
                         <a href="{{ route('rekapitulasi.show') }}"
                             class="btn w-1/2 right-0 rounded-full bg-primary-second hover:bg-white hover:text-black text-white font-inter font-bold"
                             style="border: none;">
-                            Lanjutkan
+                            Rekapitulasi
                         </a>
                     </div>
                 </div>

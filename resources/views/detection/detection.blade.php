@@ -41,7 +41,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('detection.show') }}" class="font-semibold text-lg">
-                                    Detection
+                                    Deteksi Penyakit
                                 </a>
                             </li>
                             <li>

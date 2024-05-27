@@ -49,6 +49,7 @@
         @endif
     </div>
 
+
     <form wire:submit.prevent="postData" enctype="multipart/form-data">
         <div
             class="relative custom-file-input border-2 border-gray-300 border-dashed rounded-md bg-white dark:bg-gray-700 h-72 mt-4 w-full max-w-md mx-auto">
@@ -81,7 +82,7 @@
         @enderror
         <div class="px-6 py-4 flex justify-end md:justify-center">
             <button type="submit" wire:loading.attr="disabled"
-                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded btn {{ $photo ? '' : 'btn-disabled' }} md:px-44">Deteksi</button>
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded btn {{ $photo ? '' : 'btn-disabled' }} md:px-44">Deteksi Gambar</button>
         </div>
     </form>
 
@@ -125,9 +126,11 @@
                             </div>
 
                             <button wire:click="saveDetectionResult"
-                                class="mt-6 w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 cursor-pointer">
+                                class="mt-6 w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 cursor-pointer"
+                                @if ($buttonClicked) disabled @endif>
                                 Simpan Deteksi
                             </button>
+
                         </div>
                     </div>
                 </div>
@@ -137,7 +140,7 @@
                 <div class="px-6">
                     <div class="mt-10 flex justify-center">
                         <div class="w-full max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow-lg">
-                            <h5 class="mb-4 text-lg font-semibold text-green-500">Tidak Terdeteksi Penyakit</h5>
+                            <h5 class="mb-4 text-lg font-semibold text-green-500">Tidak Terdeteksi Adanya Penyakit</h5>
                             <div class="border-b border-gray-300 py-4">
                                 <div class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

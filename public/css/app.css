@@ -2009,10 +2009,6 @@ input:checked + .toggle-bg {
     grid-auto-flow: row dense;
   }
 }
-.form-control {
-  display: flex;
-  flex-direction: column;
-}
 .label {
   display: flex;
   -webkit-user-select: none;
@@ -4249,29 +4245,8 @@ details.collapse summary::-webkit-details-marker {
 .top-2 {
   top: 0.5rem;
 }
-.top-5 {
-  top: 1.25rem;
-}
-.top-10 {
-  top: 2.5rem;
-}
 .top-7 {
   top: 1.75rem;
-}
-.top-6 {
-  top: 1.5rem;
-}
-.top-9 {
-  top: 2.25rem;
-}
-.top-4 {
-  top: 1rem;
-}
-.top-8 {
-  top: 2rem;
-}
-.right-5 {
-  right: 1.25rem;
 }
 .z-0 {
   z-index: 0;
@@ -4299,6 +4274,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .col-span-3 {
   grid-column: span 3 / span 3;
+}
+.col-span-full {
+  grid-column: 1 / -1;
 }
 .m-auto {
   margin: auto;
@@ -4543,15 +4521,6 @@ details.collapse summary::-webkit-details-marker {
 .h-screen {
   height: 100vh;
 }
-.h-52 {
-  height: 13rem;
-}
-.h-40 {
-  height: 10rem;
-}
-.h-7 {
-  height: 1.75rem;
-}
 .max-h-screen {
   max-height: 100vh;
 }
@@ -4630,6 +4599,9 @@ details.collapse summary::-webkit-details-marker {
 .w-8\/12 {
   width: 66.666667%;
 }
+.w-9\/12 {
+  width: 75%;
+}
 .w-\[105\%\] {
   width: 105%;
 }
@@ -4642,8 +4614,11 @@ details.collapse summary::-webkit-details-marker {
 .w-full {
   width: 100%;
 }
-.w-9\/12 {
-  width: 75%;
+.w-11\/12 {
+  width: 91.666667%;
+}
+.w-6\/12 {
+  width: 50%;
 }
 .min-w-full {
   min-width: 100%;
@@ -5073,6 +5048,13 @@ details.collapse summary::-webkit-details-marker {
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
 }
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
+}
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -5477,6 +5459,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .underline {
   text-decoration-line: underline;
+}
+.underline-offset-0 {
+  text-underline-offset: 0px;
 }
 .antialiased {
   -webkit-font-smoothing: antialiased;
@@ -6374,6 +6359,18 @@ details.collapse summary::-webkit-details-marker {
 
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
+  .md\:w-1\/3 {
+    width: 33.333333%;
+  }
+
+  .md\:w-2\/3 {
+    width: 66.666667%;
   }
 
   .md\:max-w-2xl {

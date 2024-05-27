@@ -23,6 +23,7 @@ class DetectForm extends Component
     public $storedImagePath_final;
     private $userId;
     private $result_detection;
+    public $buttonClicked = false;
 
     use WithFileUploads;
 
@@ -114,7 +115,7 @@ class DetectForm extends Component
 
             if (!empty($solutions)) {
                 $this->disease = implode(', ', array_keys($solutions));
-                $this->storedImagePath_final = $this->storedImagePath;
+                $this->storedImagePath_final = str_replace('public', '', $this->storedImagePath);
                 $this->amount = count($detectedDiseases);
                 $this->solution = implode(', ', $solutions);
             } else {
@@ -145,31 +146,38 @@ class DetectForm extends Component
             // Mendapatkan ID deteksi penyakit yang baru saja disimpan
             $detectionId = $detection->id;
 
-            // Memisahkan nilai $this->disease menjadi array berdasarkan koma
-            $detectedDiseases = explode(', ', $this->disease);
+            // // Memisahkan nilai $this->disease menjadi array berdasarkan koma
+            // $detectedDiseases = explode(', ', $this->disease);
 
-            // Langkah 2: Menyimpan data ke dalam tabel diseasedetection_solution
-            foreach ($detectedDiseases as $diseaseName) {
-                $solution = new Diseasedetection_Solution;
-                $solution->diseasedetection_id = $detectionId;
+            // // Langkah 2: Menyimpan data ke dalam tabel diseasedetection_solution
+            // foreach ($detectedDiseases as $diseaseName) {
+            //     $solution = new Diseasedetection_Solution;
+            //     $solution->diseasedetection_id = $detectionId;
 
-                // Mencari solusi berdasarkan nama penyakit
-                $disease = DiseaseSolution::where('DiseaseName', $diseaseName)->first();
-                if ($disease) {
-                    $solution->DiseaseID = $disease->SolutionID;
-                    $solution->save();
-                }
-            }
+            //     // Mencari solusi berdasarkan nama penyakit
+            //     $disease = DiseaseSolution::where('DiseaseName', $diseaseName)->first();
+            //     if ($disease) {
+            //         $solution->DiseaseID = $disease->SolutionID;
+            //         $solution->save();
+            //         dd('masuk 2');
+            //     }
+            // }
 
-            dd('masuk 3');
+            // dd('masuk');
+            $this->buttonClicked = true;
+
             // Mengembalikan respons
-            return back()->with('data_updated', 'Data telah diperbarui.');
+            session()->flash('data_updated', 'Data deteksi berhasil disimpan.');
+
+            // Redirect ke URL yang diinginkan setelah berhasil menyimpan
+            return redirect()->route('detection.show');
         } catch (Exception $e) {
             logger()->error('Error in saveDetectionResult:', ['error' => $e->getMessage()]);
             Session::flash('error', 'Failed to save detection result: ' . $e->getMessage());
             return redirect()->back();
         }
     }
+
 
 
     private function storeImageHelper($userFolder)

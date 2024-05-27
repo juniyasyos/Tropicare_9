@@ -38,7 +38,7 @@
             <!-- Modal toggle -->
             @if (!$expenditure->isEmpty())
                 <button class="btn w-auto px-5 btn-success text-white" onclick="modalAddExpenditure.showModal()">Tambah
-                    Pengeluaran</button>
+                    </button>
                 @if (\Carbon\Carbon::parse($startDate)->translatedFormat('F') === \Carbon\Carbon::now()->translatedFormat('F'))
                     <div class="dropdown dropdown-bottom dropdown-end mt-4 sm:mt-0">
                         <div tabindex="0" role="button"

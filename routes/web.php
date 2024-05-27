@@ -44,18 +44,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/detection/detection', [DetectController::class, 'showDetection'])->name('detection.detect');
     // Route untuk menampilkan halaman histori deteksi dari detections
     Route::get('/detection/history', [DetectController::class, 'showHistoryDetection'])->name('detection.history');
+    // Route untuk menghapus histori deteksi dari detections yan terpilih
+    Route::delete('/detections/{id}', [DetectController::class, 'delete'])->name('detections.delete');
+
 
     /*
     Routes untuk rekapitulasi data
     */
     // Route untuk menampilkan halaman rekapitulasi
-    Route::get('/rekapitulasi', [RekapitulasiController::class, 'rekapitulasi'])->name('rekapitulasi.show');
+    Route::get('/rekapitulasi', [RekapitulasiController::class, 'showRekapitulasi'])->name('rekapitulasi.show');
     // Route untuk menampilkan halaman penjualan pada rekapitulasi
-    Route::get('/rekapitulasi/penjualan', [RekapitulasiController::class, 'penjualan'])->name('rekapitulasi.penjualan');
+    Route::get('/rekapitulasi/penjualan', [RekapitulasiController::class, 'showPenjualan'])->name('rekapitulasi.penjualan');
     // Route untuk menampilkan halaman pengeluaran pada rekapitulasi
-    Route::get('/rekapitulasi/pengeluaran', [RekapitulasiController::class, 'pengeluaran'])->name('rekapitulasi.pengeluaran');
+    Route::get('/rekapitulasi/pengeluaran', [RekapitulasiController::class, 'showPengeluaran'])->name('rekapitulasi.pengeluaran');
     // Route untuk menampilkan halaman laporan pada rekapitulasi
-    Route::get('/rekapitulasi/laporan', [RekapitulasiController::class, 'laporan'])->name('rekapitulasi.laporan');
+    Route::get('/rekapitulasi/laporan', [RekapitulasiController::class, 'showLaporan'])->name('rekapitulasi.laporan');
 
     /*
     Routes untuk melakukan crud data pada penjualan

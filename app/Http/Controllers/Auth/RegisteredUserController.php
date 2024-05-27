@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
         $folderName = base64_encode(Str::uuid()->getHex());
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);

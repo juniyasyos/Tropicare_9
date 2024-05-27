@@ -37,7 +37,7 @@
         <div class="flex flex-row justify-between items-center mb-5 mt-[-10px]">
             <!-- Modal toggle -->
             @if (!$transactions->isEmpty())
-                <button class="btn w-44 btn-success text-white" onclick="modalAddNota.showModal()">Tambah Nota</button>
+                <button class="btn w-44 btn-success text-white" onclick="modalAddNota.showModal()">Tambah</button>
                 @if (\Carbon\Carbon::parse($startDate)->translatedFormat('F') === \Carbon\Carbon::now()->translatedFormat('F'))
                     <div class="dropdown dropdown-bottom dropdown-end mt-4 sm:mt-0">
                         <div tabindex="0" role="button"
