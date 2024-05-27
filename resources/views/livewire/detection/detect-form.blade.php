@@ -1,7 +1,57 @@
-<div>
+<div class="h-full bg-white">
+    <div class="fixed flex justify-end w-9/12 z-30 top-7 right-0">
+        @if (session('error'))
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                x-transition:enter="transition ease-out duration-500 transform"
+                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition ease-in duration-500 transform" x-transition:leave-start="translate-x-0"
+                x-transition:leave-end="translate-x-full" role="alert"
+                class="alert alert-error bg-red-500 text-white p-4 rounded-md shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('error') }}</span>
+            </div>
+        @endif
+
+        @if (session('data_updated'))
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                x-transition:enter="transition ease-out duration-500 transform"
+                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition ease-in duration-500 transform" x-transition:leave-start="translate-x-0"
+                x-transition:leave-end="translate-x-full" role="alert"
+                class="alert alert-success bg-green-500 text-white p-4 rounded-md shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('data_updated') }}</span>
+            </div>
+        @endif
+
+        @if (session('info'))
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                x-transition:enter="transition ease-out duration-500 transform"
+                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition ease-in duration-500 transform" x-transition:leave-start="translate-x-0"
+                x-transition:leave-end="translate-x-full" role="alert"
+                class="alert alert-success bg-green-500 text-white p-4 rounded-md shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('info') }}</span>
+            </div>
+        @endif
+    </div>
+
     <form wire:submit.prevent="postData" enctype="multipart/form-data">
         <div
-            class="relative custom-file-input border-2 border-gray-300 border-dashed rounded-md bg-white dark:bg-gray-700 h-64 mt-4 w-full max-w-md mx-auto">
+            class="relative custom-file-input border-2 border-gray-300 border-dashed rounded-md bg-white dark:bg-gray-700 h-72 mt-4 w-full max-w-md mx-auto">
             @if (!$photo)
                 <input wire:model="photo" id="filePicker" name="img" type="file"
                     class="file-input absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*">
@@ -15,7 +65,7 @@
                 </svg>
             </a>
             <img wire:model="photo" src="{{ $photo ? $photo->temporaryUrl() : '' }}" alt="Preview"
-                class="{{ $photo ? '' : 'hidden' }} m-auto h-full object-cover rounded-md">
+                class="{{ $photo ? '' : 'hidden' }} m-auto h-full mt-5 object-cover rounded-md">
             <div id="fileInputOverlay" class="flex items-center justify-center h-full">
                 <div class="space-y-1 text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none"
@@ -83,7 +133,7 @@
                 </div>
             </div>
         @else
-            <div class="flex-grow bg-gray-100 pb-10 mt-6">
+            <div class="flex-grow bg-white pb-10 mt-6">
                 <div class="px-6">
                     <div class="mt-10 flex justify-center">
                         <div class="w-full max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow-lg">

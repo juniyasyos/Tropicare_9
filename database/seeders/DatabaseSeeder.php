@@ -27,11 +27,11 @@ class DatabaseSeeder extends Seeder
 
         $transactions = [];
 
-        for ($i = 1; $i <= 600; $i++) {
+        for ($i = 1; $i <= 7000; $i++) {
             $transactions[] = [
                 'UserId' => 24010070,
                 'NameObject' => $faker->word,
-                'TransactionDate' => $faker->dateTimeBetween('2024-05-01', '2024-05-31')->format('Y-m-d'),
+                'TransactionDate' => $faker->dateTimeBetween('2020-10-01', '2024-05-31')->format('Y-m-d'),
                 'Quantity' => $faker->numberBetween(100, 250),
                 'PricePerKg' => $faker->numberBetween(6000, 10000)
             ];
@@ -48,12 +48,12 @@ class DatabaseSeeder extends Seeder
 
         $expenditures = [];
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 1000; $i++) {
             $expenditures[] = [
                 'UserId' => 24010070,
                 'NameExpenditure' => $faker->word,
                 'Description' => $faker->sentence,
-                'ExpenditureDate' => $faker->dateTimeBetween('2024-05-01', '2024-05-31')->format('Y-m-d'),
+                'ExpenditureDate' => $faker->dateTimeBetween('2020-01-01', '2024-05-31')->format('Y-m-d'),
                 'Amount' => $faker->numberBetween(100000, 10000000)
             ];
         }

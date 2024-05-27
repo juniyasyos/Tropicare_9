@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Detection;
 
 use Exception;
 use Illuminate\Http\Request;
+use App\Models\Diseasedetection;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,8 @@ class DetectController extends Controller
     public function showIndex()
     {
         if (Auth::check()) {
-            return view('detection.index-detection');
+            $detections = Diseasedetection::latest()->take(6)->get();
+            return view('detection.index-detection', compact('detections'));
         }
         return redirect()->route('login');
     }

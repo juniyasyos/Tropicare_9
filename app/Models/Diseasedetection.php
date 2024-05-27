@@ -17,7 +17,6 @@ class Diseasedetection extends Model
         'UserID',
         'DetectionDate',
         'PlantPhoto',
-        'DiseaseID',
         'ResultDetection'
     ];
 

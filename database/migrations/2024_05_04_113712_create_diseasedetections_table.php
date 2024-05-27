@@ -9,7 +9,7 @@ class CreateDiseasedetectionsTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return void 
      */
     public function up()
     {
@@ -17,10 +17,8 @@ class CreateDiseasedetectionsTable extends Migration
             $table->id('DetectionID');
             $table->unsignedBigInteger('UserID')->nullable();
             $table->string('PlantPhoto')->nullable();
-            $table->unsignedBigInteger('DiseaseID')->nullable();
             $table->string('ResultDetection')->nullable();
             $table->foreign('UserID')->references('id')->on('users');
-            $table->foreign('DiseaseID')->references('SolutionID')->on('diseasesolutions');
             $table->timestamps();
         });
     }

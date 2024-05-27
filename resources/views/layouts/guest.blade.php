@@ -23,7 +23,7 @@
 <body class="max-h-screen flex flex-col bg-primary-first text-white bg-cover relative antialiased"
     background="src/image/Login-minimalist.png">
     <div class="relative xl:container px-6 mb-10 text-gray-500 md:px-12">
-        <div class="m-auto space-y-8 md:w-4/5 lg:3/5">
+        <div class="mx-auto space-y-8 md:w-4/5 lg:3/5">
             <div class="md:py-12">
                 {{ $slot }}
             </div>
