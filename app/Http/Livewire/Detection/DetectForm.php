@@ -72,8 +72,8 @@ class DetectForm extends Component
             $imageData = file_get_contents(storage_path('app/' . $storedImagePath));
             $data = base64_encode($imageData);
 
-            $api_key = "ocI0aRkXvOCRimVsznZU";
-            $model_endpoint = "p_diseases/1";
+            $api_key = "drqoBEhK8PQ3X96EdepO";
+            $model_endpoint = "hello_papaya/1";
 
             $url = "https://detect.roboflow.com/" . $model_endpoint . "?api_key=" . $api_key;
 

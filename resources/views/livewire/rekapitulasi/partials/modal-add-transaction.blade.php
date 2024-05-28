@@ -36,7 +36,6 @@
                         <button type="submit" class="btn w-6/12 btn-success text-white bg-green-500">Simpan
                             Nota</button>
                     </div>
-
                 </form>
             </div>
         </div>
