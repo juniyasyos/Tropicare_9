@@ -107,7 +107,7 @@
         </div>
         <div id="line-chart" class="w-full md:mt-4"></div>
     </div>
-    <div class="container mx-auto p-4 mt-[-30px] md:mt-10">
+    {{-- <div class="container mx-auto p-4 mt-[-30px] md:mt-10">
         <div class="grid gap-4 md:gap-6 grid-cols-2 md:grid-cols-3">
             <!-- Penjualan -->
             <div
@@ -137,7 +137,7 @@
                 <div class="text-2xl text-gray-800 dark:text-gray-100 font-bold mt-4">
                     Rp{{ number_format($averageExpenditure) }}
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Pengeluaran -->
             {{-- <div
