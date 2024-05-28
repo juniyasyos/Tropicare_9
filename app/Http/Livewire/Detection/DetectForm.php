@@ -98,7 +98,6 @@ class DetectForm extends Component
 
     private function getResultDiseaseDetection($result)
     {
-        dd($result['predictions'], 'class');
         try {
             $detectedDiseases = array_unique(array_column($result['predictions'], 'class'));
 
