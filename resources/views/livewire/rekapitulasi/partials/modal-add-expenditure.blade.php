@@ -29,7 +29,7 @@
                     <div class="flex justify-end space-x-4">
                         <button type="button" class="btn w-3/12 btn-outline btn-error"
                             onclick="modalAddExpenditure.close()">Keluar</button>
-                        <button type="submit" class="btn w-3/12 btn-success text-white bg-green-500">Tambah</button>
+                        <button type="submit" class="btn w-3/12 btn-success text-white bg-green-500">Simpan</button>
                     </div>
                 </form>
             </div>
