@@ -39,7 +39,15 @@
                     <div class="text-sm breadcrumbs hidden md:block lg:block">
                         <ul>
                             <li>
-                                <a href="{{ route('dashboard') }}" class="font-semibold text-lg">
+                                <button href="{{ route('dashboard') }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px"
+                                        id="back">
+                                        <path
+                                            d="M22,15H12.41l2.3-2.29a1,1,0,0,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L12.41,17H22a1,1,0,0,0,0-2Z">
+                                        </path>
+                                    </svg>
+                                </button>
+                                <a class="font-semibold text-lg">
                                     Dashboard
                                 </a>
                             </li>

@@ -287,7 +287,7 @@ class RekapitulasiController extends Controller
     }
 
     //>>>>>> Controller laporan <<<<< //
-    public function laporan()
+    public function showLaporan()
     {
         return $this->laporan->view();
     }
