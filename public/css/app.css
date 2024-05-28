@@ -5731,6 +5731,11 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+}
+
 .hover\:from-indigo-600:hover {
   --tw-gradient-from: #5850EC var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(88 80 236 / 0) var(--tw-gradient-to-position);
@@ -5932,6 +5937,11 @@ details.collapse summary::-webkit-details-marker {
 .focus\:ring-red-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(240 82 82 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-gray-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
 }
 
 .focus\:ring-opacity-50:focus {

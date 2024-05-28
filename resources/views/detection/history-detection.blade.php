@@ -33,11 +33,9 @@
                                         </path>
                                     </svg>
                                 </a>
-                            </li>
-                            <li>
-                                <a class="font-semibold text-lg">
+                                <h1 class="font-semibold text-lg">
                                     Dashboard
-                                </a>
+                                </h1>
                             </li>
                             <li>
                                 <a class="text-lg font-semibold">
@@ -60,39 +58,22 @@
     </div>
     <x-slot name="AddScript">
         <script>
-            function showTransactionEdit(transaction) {
-                const modalEdit = document.getElementById('editFormDataTransaction');
-                document.getElementById('id_list').value = transaction.TransactionID;
-                document.getElementById('id_delete').value = transaction.TransactionID;
-
-                document.getElementById('nama_barang').value = transaction.NameObject;
-                document.getElementById('tanggal').value = transaction.TransactionDate;
-                document.getElementById('barang_kg').value = transaction.Quantity;
-                document.getElementById('harga_per_pcs').value = (transaction.PricePerKg * 1).toFixed(0);
-                document.getElementById('amount').value = (transaction.PricePerKg * transaction.Quantity).toFixed(0);
-
-                // Mengisi teks pada elemen <p> atau <span>
-                document.getElementById('nama_barang_del').textContent = transaction.NameObject;
-                document.getElementById('tanggal_del').textContent = transaction.TransactionDate;
-                document.getElementById('barang_kg_del').textContent = transaction.Quantity;
-                document.getElementById('harga_per_pcs_del').textContent = (transaction.PricePerKg * 1).toFixed(0);
-
-                modalEdit.showModal();
+            function toggleModal(detectionId) {
+                var modal = document.getElementById('modal-' + detectionId);
+                modal.classList.toggle('hidden');
             }
 
-            function closeEditModal() {
-                const modal = document.getElementById('editFormDataTransaction');
-                modal.close();
-            }
+            function deleteDetection(detectionId) {
+                var modal = document.getElementById('delete-modal-' + detectionId);
+                var ariaHidden = modal.getAttribute('aria-hidden');
 
-            function showDeleteModal() {
-                const modal = document.getElementById('deleteFormDataTransaction');
-                modal.showModal();
-            }
-
-            function closeDeleteModal() {
-                const modal = document.getElementById('deleteFormDataTransaction');
-                modal.close();
+                if (ariaHidden === 'true') {
+                    modal.classList.remove('hidden');
+                    modal.setAttribute('aria-hidden', 'false');
+                } else {
+                    modal.classList.add('hidden');
+                    modal.setAttribute('aria-hidden', 'true');
+                }
             }
         </script>
     </x-slot>
