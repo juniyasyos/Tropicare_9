@@ -32,7 +32,7 @@
 <body class="font-sans antialiased">
     <div>
         <div class="h-screen text-black bg-gray-100">
-            <div class="flex-grow bg-gray-100">
+            <div class="flex-grow bg-gray-200">
                 <!-- Page Heading -->
                 @if (isset($header))
                     <header>
