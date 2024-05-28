@@ -115,15 +115,53 @@
             </div>
         </div>
     </dialog>
-    {{-- @if (session('data_updated'))
-        <div class="alert alert-success">
-            {{ session('data_updated') }}
-        </div>
-    @endif
+    <div class="fixed flex justify-end w-9/12 z-30 top-7 right-0">
+        @if (session('error'))
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                x-transition:enter="transition ease-out duration-500 transform"
+                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition ease-in duration-500 transform"
+                x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" role="alert"
+                class="alert alert-error bg-red-500 text-white p-4 rounded-md shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('error') }}</span>
+            </div>
+        @endif
 
-    @if ($errors->has('error'))
-        <div class="alert alert-danger">
-            {{ $errors->first('error') }}
-        </div>
-    @endif   --}}
+        @if (session('data_updated'))
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                x-transition:enter="transition ease-out duration-500 transform"
+                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition ease-in duration-500 transform"
+                x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" role="alert"
+                class="alert alert-success bg-green-500 text-white p-4 rounded-md shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('data_updated') }}</span>
+            </div>
+        @endif
+
+        @if (session('info'))
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
+                x-transition:enter="transition ease-out duration-500 transform"
+                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition ease-in duration-500 transform"
+                x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" role="alert"
+                class="alert alert-success bg-green-500 text-white p-4 rounded-md shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('info') }}</span>
+            </div>
+        @endif
+    </div>
 </div>
