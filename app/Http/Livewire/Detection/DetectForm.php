@@ -12,7 +12,6 @@ use App\Models\Diseasedetection_Solution;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Ignition\Contracts\Solution;
 
 class DetectForm extends Component
 {
@@ -36,7 +35,7 @@ class DetectForm extends Component
         if ($this->photo) {
             logger()->info('File uploaded:', ['photo' => $this->photo->getClientOriginalName()]);
         } else {
-            logger()->error('No file uploaded.');
+            logger()->error('Tidak ada file photo yang terupload.');
         }
     }
 
@@ -47,7 +46,7 @@ class DetectForm extends Component
 
             $user = Auth::user();
             if (!$user) {
-                throw new Exception("User is not authenticated.");
+                throw new Exception("Authentifikasi User Dipertanyakan?.");
             }
 
             $this->storedImagePath = $this->storeImageHelper($user->folder);
@@ -56,7 +55,7 @@ class DetectForm extends Component
 
             $this->getResultDiseaseDetection($result);
 
-            logger()->info('postData complete', ['storedImagePath' => $this->storedImagePath]);
+            logger()->info('postData Selesai', ['Url Penyimpanan' => $this->storedImagePath]);
             session()->flash('info', 'postData complete: ' . $this->storedImagePath);
 
         } catch (Exception $e) {
