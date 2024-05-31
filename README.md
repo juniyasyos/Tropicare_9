@@ -2,7 +2,7 @@
 <h1 align="center">Tropicare</h1>
 
 <!-- Deskripsi -->
-<p align="center">Aplikasi pembantu petani pepaya dalam mengolah kebunnya, dengan fitur unggulan deteksi dan rekapitulasi.</p>
+<p align="center">Aplikasi pembantu petani pepaya dalam mengolah kebunnya, dengan fitur unggulan deteksi dan derekapitulasi.</p>
 
 <!-- Badges -->
 <div align="center">

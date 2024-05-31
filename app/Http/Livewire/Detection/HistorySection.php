@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\Detection;
 
-use App\Models\Diseasedetection;
 use Livewire\Component;
+use App\Models\Diseasedetection;
+use Illuminate\Support\Facades\Auth;
 
 class HistorySection extends Component
 {
@@ -26,7 +27,7 @@ class HistorySection extends Component
     public function render()
     {
         // Mengambil semua deteksi penyakit
-        $this->detections = Diseasedetection::all();
+        $this->detections = Diseasedetection::where('UserId', Auth::id())->all();
         return view('livewire.detection.history-section');
     }
 }
