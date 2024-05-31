@@ -12,7 +12,7 @@ class DetectController extends Controller
     public function showIndex()
     {
         if (Auth::check()) {
-            $detections = Diseasedetection::latest()->take(6)->get();
+            $detections = Diseasedetection::where('UserId', Auth::id())->latest()->take(6)->get();
             return view('detection.index-detection', compact('detections'));
         }
         return redirect()->route('login');
