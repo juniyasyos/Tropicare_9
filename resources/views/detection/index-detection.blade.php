@@ -214,7 +214,7 @@
                                 {{-- <div class="skeleton w-full h-48" aria-hidden="{{ $index == 0 ? 'false' : 'true' }}">
                                 </div> --}}
                                 <!-- Gambar yang sudah dimuat -->
-                                <img src="{{ asset('storage/' . $detection->PlantPhoto) }}" alt="Plant Image"
+                                <img src="{{ asset('storage' . $detection->PlantPhoto) }}" alt="Plant Image"
                                     class="rounded-lg shadow-lg w-10/11 h-auto"
                                     aria-hidden="{{ $index == 0 ? 'true' : 'false' }}">
                                 <div class="p-5">

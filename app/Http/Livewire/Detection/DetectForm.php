@@ -182,7 +182,7 @@ class DetectForm extends Component
     private function storeImageHelper($userFolder)
     {
         try {
-            $directory = "public/users{$userFolder}";
+            $directory = "public/users/{$userFolder}";
 
             Storage::makeDirectory($directory);
 
