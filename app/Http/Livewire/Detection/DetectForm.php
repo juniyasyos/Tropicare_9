@@ -73,7 +73,7 @@ class DetectForm extends Component
             $data = base64_encode($imageData);
 
             $api_key = "drqoBEhK8PQ3X96EdepO";
-            $model_endpoint = "hello_papaya/1";
+            $model_endpoint = "hello_papaya/4";
 
             $url = "https://detect.roboflow.com/" . $model_endpoint . "?api_key=" . $api_key;
 
@@ -183,7 +183,7 @@ class DetectForm extends Component
     private function storeImageHelper($userFolder)
     {
         try {
-            $directory = "public/users/{$userFolder}";
+            $directory = "public/users{$userFolder}";
 
             Storage::makeDirectory($directory);
 
