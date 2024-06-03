@@ -176,7 +176,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Ladumor\LaravelPwa\PWAServiceProvider::class,
     ],
 
     /*
@@ -191,7 +190,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
+        // Hello pecundang
     ])->toArray(),
 
 ];

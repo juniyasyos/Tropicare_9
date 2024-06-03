@@ -4,7 +4,7 @@
     <div class="min-h-screen justify-center">
         <div class="flex-col flex  self-center z-10">
             <div class="self-start hidden md:block flex-col  text-white">
-                <h1 class="mb-3 font-bold text-5xl">Hi? Selamat Datang di Tropicase</h1>
+                <h1 class="mb-3 font-bold text-5xl">Hi? Selamat Datang di Tropicare</h1>
                 <p class="pr-3">Aplikasi Tropicare adalah terobosan mutakhir untuk membantu para petani untuk mendeteksi penyakit pada tanaman mereka</p>
             </div>
         </div>
