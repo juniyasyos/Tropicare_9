@@ -11,7 +11,7 @@
     </x-slot>
 
     <div class="md:p-4 md:ml-64">
-        <div class="bg-white h-screen rounded-lg">
+        <div class="bg-white pb-20 rounded-lg">
             <div class="pt-6 pb-3">
                 <!-- Contoh 1: Tata Letak Center dan Kanan -->
                 <div class="text-center sm:text-left ml-4">

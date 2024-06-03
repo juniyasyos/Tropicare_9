@@ -4305,6 +4305,10 @@ details.collapse summary::-webkit-details-marker {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+.mx-3 {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
 .-ml-px {
   margin-left: -1px;
 }
@@ -4440,6 +4444,9 @@ details.collapse summary::-webkit-details-marker {
 .mt-\[440px\] {
   margin-top: 440px;
 }
+.mb-20 {
+  margin-bottom: 5rem;
+}
 .block {
   display: block;
 }
@@ -4517,6 +4524,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .h-screen {
   height: 100vh;
+}
+.h-10 {
+  height: 2.5rem;
 }
 .max-h-screen {
   max-height: 100vh;
@@ -4613,6 +4623,15 @@ details.collapse summary::-webkit-details-marker {
 }
 .w-full {
   width: 100%;
+}
+.w-10 {
+  width: 2.5rem;
+}
+.w-11\/12 {
+  width: 91.666667%;
+}
+.w-11 {
+  width: 2.75rem;
 }
 .min-w-full {
   min-width: 100%;
@@ -4896,6 +4915,10 @@ details.collapse summary::-webkit-details-marker {
   border-start-start-radius: 0.5rem;
   border-end-start-radius: 0.5rem;
 }
+.rounded-t-lg {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
 .border {
   border-width: 1px;
 }
@@ -5046,6 +5069,14 @@ details.collapse summary::-webkit-details-marker {
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
 }
+.bg-blue-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(195 221 253 / var(--tw-bg-opacity));
+}
+.bg-blue-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 66 159 / var(--tw-bg-opacity));
+}
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
@@ -5080,6 +5111,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .stroke-current {
   stroke: currentColor;
+}
+.stroke-slate-500 {
+  stroke: #64748b;
 }
 .object-cover {
   -o-object-fit: cover;
@@ -6290,6 +6324,10 @@ details.collapse summary::-webkit-details-marker {
 
 @media (min-width: 768px) {
 
+  .md\:relative {
+    position: relative;
+  }
+
   .md\:-ml-\[65px\] {
     margin-left: -65px;
   }
@@ -6443,6 +6481,11 @@ details.collapse summary::-webkit-details-marker {
   .md\:py-12 {
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .md\:pt-\[80px\] {

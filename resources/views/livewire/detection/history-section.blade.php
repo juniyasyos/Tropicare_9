@@ -114,116 +114,140 @@
                 </g>
             </svg>
             <div class="text-center text-gray-700 dark:text-gray-400">
-                <p class="mt-4">Tidak ada hasil deteksi yang tersedia.</p>
+                <p class="text-gray-500 mt-4">Tidak ada hasil deteksi yang tersedia.</p>
             </div>
         </div>
     @else
-        @foreach ($detections as $detection)
-            <div
-                class="max-w-xs mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <img src="{{ asset('storage/' . $detection->PlantPhoto) }}" alt="Plant Image"
-                    class="rounded-lg shadow-lg w-10/11 h-auto">
-                <div class="p-5">
-                    <a href="#">
+        <div>
+            <!-- Card Template -->
+            @foreach ($detections as $detection)
+                <div
+                    class="max-w-xs mx-auto bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mb-6">
+                    <img src="{{ asset('storage/' . $detection->PlantPhoto) }}" alt="Plant Image"
+                        class="rounded-t-lg w-full h-auto">
+                    <div class="p-5">
                         <h5 class="mb-2 text-md md:text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {{ $detection->ResultDetection }}
                         </h5>
-                    </a>
-                    <p class="mb-3 text-sm md:text-md font-normal text-gray-700 dark:text-gray-400">
-                        {{ $detection->created_at->format('d M Y') }}
-                    </p>
-                    <div class="w-full flex justify-end">
-                        <button onclick="toggleModal('{{ $detection->DetectionID }}')"
-                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Detail
-                        </button>
+                        <p class="mb-3 text-sm md:text-md font-normal text-gray-700 dark:text-gray-400">
+                            {{ $detection->created_at->format('d M Y') }}
+                        </p>
+                        <div class="flex justify-end">
+                            <button
+                                wire:click="openModal('{{ $detection->DetectionID }}', '{{ asset('storage/' . $detection->PlantPhoto) }}', '{{ $detection->ResultDetection }}', '{{ $detection->created_at->format('d M Y') }}')"
+                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Detail
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
 
             <!-- Modal -->
-            <div id="modal-{{ $detection->DetectionID }}"
-                class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
-                aria-hidden="true">
-                <div class="flex-grow pb-10 mt-6">
-                    <div class="px-6">
-                        <div class="mt-10 flex justify-center">
-                            <div
-                                class="w-full max-w-lg sm:max-w-xl md:max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow-lg">
-                                <img src="{{ asset('storage/' . $detection->PlantPhoto) }}" alt="Plant Image"
-                                    class="rounded-lg shadow-lg w-3/4 h-auto mx-auto mb-5">
-                                <h5 class="mb-4 text-lg font-semibold text-green-500">Deteksi Berhasil!</h5>
-                                <div class="border-b border-gray-300 py-4">
-                                    <div class="flex items-center">
-                                        <div class="ml-4">
-                                            <p class="text-gray-600">Terdeteksi Penyakit</p>
-                                            <p class="text-lg text-red-500 font-semibold">
-                                                {{ $detection->ResultDetection }}</p>
-                                        </div>
-                                    </div>
-                                    <!-- Jika terdapat saran yang berasal dari database, ganti teks "Gunakan Pestisida" dengan saran yang sesuai -->
-                                    <div class="flex items-center mt-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor" class="w-6 h-6 mr-2 text-yellow-500">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M12 8v4m0 4v.01m0-8V8m0 0V3a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v1m8 0h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-1m8 0v-4m0 4h-4m4 0l-4-4" />
-                                        </svg>
-                                        <div>
-                                            <p class="text-gray-600">Saran</p>
-                                            <!-- Jika terdapat saran yang berasal dari database, ganti teks "Gunakan Pestisida" dengan saran yang sesuai -->
-                                            <p class="text-lg text-yellow-500 font-semibold">Gunakan Pestisida</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4 text-gray-700">
-                                    <!-- Jika terdapat solusi yang berasal dari database, ganti teks "Simpan Deteksi" dengan solusi yang sesuai -->
-                                    {{-- <p class="mb-2">{{ $solution }}</p> --}}
-                                    <!-- Jika terdapat solusi yang berasal dari database, ganti teks "Simpan Deteksi" dengan solusi yang sesuai -->
-                                </div>
-                                <div class="flex justify-end mt-4">
-                                    <button onclick="toggleModal('{{ $detection->DetectionID }}')"
-                                        class="mr-2 px-4 py-2 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 cursor-pointer">
-                                        Tutup
-                                    </button>
-                                    <button onclick="deleteDetection('{{ $detection->DetectionID }}')"
-                                        class="px-4 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 cursor-pointer">
-                                        Hapus
-                                    </button>
+            @if ($isModalOpen)
+                <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div
+                        class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg w-full max-w-lg p-6">
+                        <img src="{{ $modalPhoto }}" alt="Plant Image"
+                            class="rounded-lg shadow-lg w-full h-auto mb-5">
+                        <h5 class="mb-4 text-lg font-semibold text-green-500">Deteksi Berhasil!</h5>
+                        <div class="border-b border-gray-300 dark:border-gray-600 py-4">
+                            <div class="flex items-center mb-4">
+                                <p class="text-gray-600 dark:text-gray-300">Terdeteksi Penyakit:</p>
+                                <p class="text-lg text-red-500 font-semibold ml-2">{{ $modalResult }}</p>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" class="w-6 h-6 mr-2 text-yellow-500">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4m0 4v.01m0-8V8m0 0V3a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v1m8 0h4a2 2 0 1-2 2v-1m8 0v-4m0 4h-4m4 0l-4-4" />
+                                </svg>
+                                <div>
+                                    <p class="text-gray-600 dark:text-gray-300">Saran:</p>
+                                    <p class="text-lg text-yellow-500 font-semibold">Gunakan Pestisida</p>
                                 </div>
                             </div>
                         </div>
+                        <div class="flex justify-end mt-4">
+                            <button wire:click="closeModal"
+                                class="mr-2 px-4 py-2 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+                                Tutup
+                            </button>
+                            <button wire:click="openDeleteModal('{{ $selectedDetectionId }}')"
+                                class="px-4 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                                Hapus
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
 
-            <!-- Modal Delete Confirmation -->
-            <div id="delete-modal-{{ $detection->DetectionID }}"
-                class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
-                aria-hidden="true">
-                <div class="flex-grow pb-10 mt-6">
-                    <div class="px-6">
-                        <div class="mt-10 flex justify-center">
-                            <div
-                                class="w-full max-w-lg sm:max-w-xl md:max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow-lg">
-                                <h5 class="mb-4 text-lg font-semibold text-red-500">Konfirmasi Penghapusan</h5>
-                                <div class="py-4 text-gray-700">
-                                    <p class="mb-2">Apakah Anda yakin ingin menghapus deteksi ini?</p>
-                                </div>
-                                <div class="flex justify-end mt-4">
-                                    <button onclick="toggleDeleteModal('{{ $detection->DetectionID }}')"
-                                        class="mr-2 px-4 py-2 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 cursor-pointer">
-                                        Batal
-                                    </button>
-                                    <button wire:click="confirmDelete('{{ $detection->DetectionID }}')"
-                                        class="px-4 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 cursor-pointer">
-                                        Hapus
-                                    </button>
-                                </div>
-                            </div>
+            <!-- Delete Confirmation Modal -->
+            @if ($isDeleteModalOpen)
+                <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div
+                        class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg w-full max-w-lg p-6">
+                        <h5 class="mb-4 text-lg font-semibold text-red-500">Konfirmasi Penghapusan</h5>
+                        <div class="py-4 text-gray-700 dark:text-gray-300">
+                            <p class="mb-2">Apakah Anda yakin ingin menghapus deteksi ini?</p>
+                        </div>
+                        <div class="flex justify-end mt-4">
+                            <button wire:click="closeDeleteModal"
+                                class="mr-2 px-4 py-2 bg-gray-500 text-white font-semibold rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+                                Batal
+                            </button>
+                            <button wire:click="confirmDelete"
+                                class="px-4 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                                Hapus
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endif
+        </div>
+
+        <x-slot name="AddScript">
+            <script>
+                function modalHandler() {
+                    return {
+                        isOpen: @entangle('isModalOpen'),
+                        modalData: {
+                            id: @entangle('modalId'),
+                            photo: @entangle('modalPhoto'),
+                            result: @entangle('modalResult'),
+                            date: @entangle('modalDate')
+                        },
+                        openModal(id, photo, result, date) {
+                            this.modalData.id = id;
+                            this.modalData.photo = photo;
+                            this.modalData.result = result;
+                            this.modalData.date = date;
+                            this.isOpen = true;
+                        },
+                        closeModal() {
+                            this.isOpen = false;
+                        }
+                    };
+                }
+
+                function deleteModalHandler() {
+                    return {
+                        isDeleteOpen: @entangle('isDeleteModalOpen'),
+                        deleteId: @entangle('deleteId'),
+                        openDeleteModal(id) {
+                            this.deleteId = id;
+                            this.isDeleteOpen = true;
+                        },
+                        closeDeleteModal() {
+                            this.isDeleteOpen = false;
+                        },
+                        confirmDelete() {
+                            @this.call('confirmDelete', this.deleteId);
+                            this.closeDeleteModal();
+                        }
+                    };
+                }
+            </script>
+        </x-slot>
     @endif
 </div>

@@ -32,29 +32,21 @@
         </div>
     </x-slot>
 
-    <div class="lg:p-4 md:ml-64 mt-5">
+    <div class="lg:p-4 md:ml-64">
         <div class="bg-white h-auto rounded-lg">
             <div class="pt-6 pb-3">
                 <div class="text-center sm:text-left ml-4">
                     <div class="text-sm breadcrumbs hidden md:block lg:block">
                         <ul>
                             <li>
-                                <button href="{{ route('dashboard') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px"
-                                        id="back">
-                                        <path
-                                            d="M22,15H12.41l2.3-2.29a1,1,0,0,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L12.41,17H22a1,1,0,0,0,0-2Z">
-                                        </path>
-                                    </svg>
-                                </button>
-                                <a class="font-semibold text-lg">
+                                <a href="{{ route('dashboard') }}" class="font-semibold text-lg">
                                     Dashboard
                                 </a>
                             </li>
                             <li>
-                                <a class="text-lg">
+                                <h1 class="text-lg">
                                     Rekapitulasi
-                                </a>
+                                </h1>
                             </li>
                         </ul>
                     </div>

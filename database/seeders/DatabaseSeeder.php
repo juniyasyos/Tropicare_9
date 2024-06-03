@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
                 'UserId' => 24010070,
                 'NameExpenditure' => $faker->word,
                 'Description' => $faker->sentence,
-                'ExpenditureDate' => $faker->dateTimeBetween('2020-01-01', '2024-05-31')->format('Y-m-d'),
+                'ExpenditureDate' => $faker->dateTimeBetween('2020-01-01', '2024-06-31')->format('Y-m-d'),
                 'Amount' => $faker->numberBetween(100000, 10000000)
             ];
         }

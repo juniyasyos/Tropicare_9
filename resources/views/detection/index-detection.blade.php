@@ -3,14 +3,14 @@
         <div class="navbar sm:block md:hidden lg:hidden">
             <div class="navbar-start">
                 <a href="{{ route('dashboard') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" id="back">
-                        <path
-                            d="M22,15H12.41l2.3-2.29a1,1,0,0,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L12.41,17H22a1,1,0,0,0,0-2Z">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
                         </path>
                     </svg>
                 </a>
             </div>
-            <div class="navbar-center mt-5">
+            <div class="navbar-center">
                 <a class="btn btn-ghost text-lg">Deteksi Penyakit</a>
             </div>
             <div class="navbar-end">
@@ -18,7 +18,7 @@
         </div>
     </x-slot>
 
-    <div class="md:p-4 md:ml-64">
+    <div class="md:p-4 md:ml-64 h-auto">
         <div class="bg-white h-auto rounded-lg">
             <div class="pt-6 pb-3">
                 <div class="text-center sm:text-left ml-4">
@@ -30,9 +30,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="text-lg">
+                                <h1 class="text-lg">
                                     Deteksi Penyakit
-                                </a>
+                                </h1>
                             </li>
                         </ul>
                     </div>
@@ -227,12 +227,6 @@
                                     <p class="mb-3 text-sm md:text-md font-normal text-gray-700 dark:text-gray-400">
                                         {{ $detection->created_at->format('d M Y') }}
                                     </p>
-                                    <div class="w-full flex justify-end">
-                                        <a href="#"
-                                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            Detail
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         @endforeach

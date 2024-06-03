@@ -1,4 +1,4 @@
-<div class="container mx-auto p-6 mt-[-50px]">
+<div class="container mx-auto p-6">
     {{-- Filters --}}
     <div id="accordion-open" data-accordion="open">
         <h2 id="accordion-open-filter" class="flex justify-end">
@@ -107,7 +107,7 @@
         </div>
         <div id="line-chart" class="w-full md:mt-4"></div>
     </div>
-    {{-- <div class="container mx-auto p-4 mt-[-30px] md:mt-10">
+    <div class="container mx-auto p-4 mt-[-30px] md:mt-10">
         <div class="grid gap-4 md:gap-6 grid-cols-2 md:grid-cols-3">
             <!-- Penjualan -->
             <div
@@ -137,10 +137,10 @@
                 <div class="text-2xl text-gray-800 dark:text-gray-100 font-bold mt-4">
                     Rp{{ number_format($averageExpenditure) }}
                 </div>
-            </div> --}}
+            </div>
 
             <!-- Pengeluaran -->
-            {{-- <div
+            <div
                 class="bg-white rounded-lg shadow dark:bg-gray-800 p-4 flex flex-col justify-between transform transition-all duration-300 hover:bg-gray-100 active:bg-gray-200 cursor-pointer border border-gray-200">
                 <!-- Header -->
                 <div class="flex items-center space-x-3">
@@ -188,7 +188,7 @@
                         Lihat Detail
                     </a>
                 </div>
-            </div> --}}
+            </div>
 
         </div>
     </div>
