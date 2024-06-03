@@ -82,16 +82,22 @@ class DetectForm extends Component
 
             $url = "https://detect.roboflow.com/" . $model_endpoint . "?api_key=" . $api_key;
 
-            $options = [
-                'http' => [
-                    'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method' => 'POST',
-                    'content' => $data
-                ]
-            ];
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/x-www-form-urlencoded'
+            ]);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // Untuk mengikuti redirect
 
-            $context = stream_context_create($options);
-            $result = file_get_contents($url, false, $context);
+            $result = curl_exec($ch);
+
+            if (curl_errno($ch)) {
+                throw new Exception(curl_error($ch));
+            }
+
+            curl_close($ch);
 
             return json_decode($result, true);
         } catch (Exception $e) {
@@ -101,9 +107,41 @@ class DetectForm extends Component
         }
     }
 
+    // local work
+    // private function getDataAnalisist($storedImagePath)
+    // {
+    //     try {
+    //         $imageData = file_get_contents(storage_path('app/' . $storedImagePath));
+    //         $data = base64_encode($imageData);
+
+    //         $api_key = "drqoBEhK8PQ3X96EdepO";
+    //         $model_endpoint = "hello_papaya/4";
+
+    //         $url = "https://detect.roboflow.com/" . $model_endpoint . "?api_key=" . $api_key;
+
+    //         $options = [
+    //             'http' => [
+    //                 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+    //                 'method' => 'POST',
+    //                 'content' => $data
+    //             ]
+    //         ];
+
+    //         $context = stream_context_create($options);
+    //         $result = file_get_contents($url, false, $context);
+
+    //         return json_decode($result, true);
+    //     } catch (Exception $e) {
+    //         logger()->error('Error in getDataAnalisist:', ['error' => $e->getMessage()]);
+    //         Session::flash('error', 'Failed to analyze image: ' . $e->getMessage());
+    //         return redirect()->back();
+    //     }
+    // }
+
     private function getResultDiseaseDetection($result)
     {
         try {
+            dd($result);
             $detectedDiseases = array_unique(array_column($result['predictions'], 'class'));
 
             $solutions = [];

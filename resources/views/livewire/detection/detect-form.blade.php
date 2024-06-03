@@ -14,6 +14,7 @@
                 </svg>
                 <span>{{ session('error') }}</span>
             </div>
+            <span>{{ session('error') }}</span>
         @endif
 
         @if (session('data_updated'))
