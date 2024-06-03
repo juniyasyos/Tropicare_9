@@ -99,9 +99,11 @@ class DetectForm extends Component
 
             curl_close($ch);
 
+            dd($result);
             return json_decode($result, true);
         } catch (Exception $e) {
             logger()->error('Error in getDataAnalisist:', ['error' => $e->getMessage()]);
+            dd($e);
             Session::flash('error', 'Failed to analyze image: ' . $e->getMessage());
             return redirect()->back();
         }
@@ -141,7 +143,6 @@ class DetectForm extends Component
     private function getResultDiseaseDetection($result)
     {
         try {
-            dd($result);
             $detectedDiseases = array_unique(array_column($result['predictions'], 'class'));
 
             $solutions = [];
