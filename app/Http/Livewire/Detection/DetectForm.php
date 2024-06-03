@@ -167,7 +167,10 @@ class DetectForm extends Component
         try {
             $directory = "public/users/{$userFolder}";
 
-            Storage::makeDirectory($directory);
+            // Membuat direktori jika belum ada
+            if (!Storage::exists($directory)) {
+                Storage::makeDirectory($directory);
+            }
 
             $fileName = "detection_" . Str::random(5) . '.' . $this->photo->getClientOriginalExtension();
 
@@ -177,7 +180,7 @@ class DetectForm extends Component
             return Storage::putFileAs($directory, $this->photo, $fileName, 'public');
         } catch (Exception $e) {
             logger()->error('Error in storeImageHelper:', ['error' => $e->getMessage()]);
-            Session::flash('error', 'Failed to store image: ' . $e->getMessage());
+            session()->flash('error', 'Failed to store image: ' . $e->getMessage());
             return redirect()->back();
         }
     }
