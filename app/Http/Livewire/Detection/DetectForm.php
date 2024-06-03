@@ -76,7 +76,6 @@ class DetectForm extends Component
     {
         try {
             $imageData = file_get_contents(storage_path('app/' . $storedImagePath));
-            dd($imageData);
             $data = base64_encode($imageData);
 
             $api_key = "drqoBEhK8PQ3X96EdepO";
