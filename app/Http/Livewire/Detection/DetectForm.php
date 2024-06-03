@@ -75,8 +75,8 @@ class DetectForm extends Component
     private function getDataAnalisist($storedImagePath)
     {
         try {
-            dd($storedImagePath);
             $imageData = file_get_contents(storage_path('app/' . $storedImagePath));
+            dd($imageData);
             $data = base64_encode($imageData);
 
             $api_key = "drqoBEhK8PQ3X96EdepO";
