@@ -73,5 +73,7 @@
             </div>
         </div>
     </div>
-    {{-- <script src="{{ asset('storage/src/js/file_picker.js') }}"></script> --}}
+    <x-slot name="AddScript">
+        <script src="{{ asset('storage/src/js/file_picker.js') }}"></script>
+    </x-slot>
 </x-app-layout>

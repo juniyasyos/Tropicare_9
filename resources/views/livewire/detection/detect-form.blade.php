@@ -50,7 +50,7 @@
     </div>
 
 
-    <form wire:submit.prevent="postData" enctype="multipart/form-data">
+    {{-- <form wire:submit.prevent="postData" enctype="multipart/form-data">
         <div
             class="relative custom-file-input border-2 border-gray-300 border-dashed rounded-md bg-white dark:bg-gray-700 h-72 mt-4 w-full max-w-md mx-auto">
             @if (!$photo)
@@ -82,10 +82,48 @@
         @enderror
         <div class="px-6 py-4 flex justify-end md:justify-center">
             <button type="submit" wire:loading.attr="disabled"
-                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded btn {{ $photo ? '' : 'btn-disabled' }} md:px-44">Deteksi Gambar</button>
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded btn {{ $photo ? '' : 'btn-disabled' }} md:px-44">Deteksi
+                Gambar</button>
+        </div>
+    </form> --}}
+
+    <form wire:submit.prevent="postData" enctype="multipart/form-data">
+        <div
+            class="relative custom-file-input border-2 border-gray-300 border-dashed rounded-md bg-white dark:bg-gray-700 h-72 mt-4 w-full max-w-md mx-auto">
+            @if (!$temporaryUrl)
+                <input wire:model="photo" id="filePicker" name="img" type="file"
+                    class="file-input absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*"
+                    onchange="previewImage(event)">
+            @endif
+
+            <a class="btn bg-gray-900 absolute top-2 right-2 rounded-full btn-xs text-white {{ $temporaryUrl ? '' : 'hidden' }}"
+                wire:click="clearPhoto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </a>
+            <img id="preview" src="{{ $temporaryUrl }}" alt="Preview"
+                class="{{ $temporaryUrl ? '' : 'hidden' }} m-auto h-full mt-5 object-cover rounded-md">
+            <div id="fileInputOverlay" class="flex items-center justify-center h-full">
+                <div class="space-y-1 text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H" />
+                    </svg>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Klik untuk memilih file di sini</p>
+                </div>
+            </div>
+        </div>
+        @error('photo')
+            <div class="text-red-500 text-sm">{{ $message }}</div>
+        @enderror
+        <div class="px-6 py-4 flex justify-end md:justify-center">
+            <button type="submit" wire:loading.attr="disabled"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded btn {{ $temporaryUrl ? '' : 'btn-disabled' }} md:px-44">Deteksi
+                Gambar</button>
         </div>
     </form>
-
 
     @if ($disease)
         @if ($disease !== 'sehat')

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 
 class DetectForm extends Component
 {
+    use WithFileUploads;
+
     public $photo;
     public $disease;
     public $solution;
@@ -23,8 +25,12 @@ class DetectForm extends Component
     private $userId;
     private $result_detection;
     public $buttonClicked = false;
+    public $temporaryUrl;
 
-    use WithFileUploads;
+    public function updatedPhoto()
+    {
+        $this->temporaryUrl = $this->photo->temporaryUrl();
+    }
 
     public function uploadData()
     {
@@ -129,46 +135,22 @@ class DetectForm extends Component
         }
     }
 
-
     public function saveDetectionResult()
     {
         try {
-            // Langkah 1: Membuat objek deteksi penyakit
             $detection = new Diseasedetection;
             $detection->PlantPhoto = $this->storedImagePath_final;
             $detection->UserID = Auth::id();
             $detection->ResultDetection = $this->disease;
 
-            // Menyimpan objek deteksi penyakit
             $detection->save();
 
-            // Mendapatkan ID deteksi penyakit yang baru saja disimpan
             $detectionId = $detection->id;
 
-            // // Memisahkan nilai $this->disease menjadi array berdasarkan koma
-            // $detectedDiseases = explode(', ', $this->disease);
-
-            // // Langkah 2: Menyimpan data ke dalam tabel diseasedetection_solution
-            // foreach ($detectedDiseases as $diseaseName) {
-            //     $solution = new Diseasedetection_Solution;
-            //     $solution->diseasedetection_id = $detectionId;
-
-            //     // Mencari solusi berdasarkan nama penyakit
-            //     $disease = DiseaseSolution::where('DiseaseName', $diseaseName)->first();
-            //     if ($disease) {
-            //         $solution->DiseaseID = $disease->SolutionID;
-            //         $solution->save();
-            //         dd('masuk 2');
-            //     }
-            // }
-
-            // dd('masuk');
             $this->buttonClicked = true;
 
-            // Mengembalikan respons
             session()->flash('data_updated', 'Data deteksi berhasil disimpan.');
 
-            // Redirect ke URL yang diinginkan setelah berhasil menyimpan
             return redirect()->route('detection.show');
         } catch (Exception $e) {
             logger()->error('Error in saveDetectionResult:', ['error' => $e->getMessage()]);
@@ -176,8 +158,6 @@ class DetectForm extends Component
             return redirect()->back();
         }
     }
-
-
 
     private function storeImageHelper($userFolder)
     {
@@ -202,6 +182,8 @@ class DetectForm extends Component
     public function clearPhoto()
     {
         $this->photo = null;
+        $this->temporaryUrl = null;
+        $this->dispatchBrowserEvent('clear-preview');
     }
 
     public function render()
