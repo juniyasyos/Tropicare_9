@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 </h5>
-                <p class="text-green-400 dark:text-white text-md md:text-xl lg:text-3xl leading-none font-bold">IDR {{ number_format(($totalIncome/1000),1)}}</p>
+                <p class="text-green-400 dark:text-white text-md md:text-xl lg:text-3xl leading-none font-bold">IDR {{ number_format(($totalIncome))}}</p>
             </div>
             <div>
                 <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal mb-2">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </h5>
-                <p class="text-red-400 dark:text-white text-md md:text-xl lg:text-3xl leading-none font-bold">IDR {{ number_format(($totalExpenditure/1000), 1) }}</p>
+                <p class="text-red-400 dark:text-white text-md md:text-xl lg:text-3xl leading-none font-bold">IDR {{ number_format(($totalExpenditure)) }}</p>
             </div>
         </div>
     </div>

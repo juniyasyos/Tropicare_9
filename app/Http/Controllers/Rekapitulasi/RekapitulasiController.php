@@ -45,6 +45,7 @@ class RekapitulasiController extends Controller
                 ->sum('Amount');
 
             $dataLaporanMonthly = $this->getLaporanMonthly();
+            // dd($dataLaporanMonthly);
 
             return view('rekapitulasi.index', compact('totalIncome', 'totalExpenditure'));
         }

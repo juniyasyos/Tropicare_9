@@ -26,8 +26,10 @@ class HistorySection extends Component
 
     public function render()
     {
-        // Mengambil semua deteksi penyakit
-        $this->detections = Diseasedetection::where('UserId', Auth::id())->all();
-        return view('livewire.detection.history-section');
+        // Mengambil semua deteksi penyakit berdasarkan UserId dari pengguna yang sedang login
+        $this->detections = Diseasedetection::where('UserId', Auth::id())->get();
+        return view('livewire.detection.history-section', [
+            'detections' => $this->detections,
+        ]);
     }
 }
