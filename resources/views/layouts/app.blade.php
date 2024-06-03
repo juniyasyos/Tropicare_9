@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="//unpkg.com/alpinejs" defer></script>
