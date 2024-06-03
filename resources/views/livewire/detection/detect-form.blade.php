@@ -51,7 +51,7 @@
     </div>
 
 
-    {{-- <form wire:submit.prevent="postData" enctype="multipart/form-data">
+    <form wire:submit.prevent="postData" enctype="multipart/form-data">
         <div
             class="relative custom-file-input border-2 border-gray-300 border-dashed rounded-md bg-white dark:bg-gray-700 h-72 mt-4 w-full max-w-md mx-auto">
             @if (!$photo)
@@ -86,9 +86,9 @@
                 class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded btn {{ $photo ? '' : 'btn-disabled' }} md:px-44">Deteksi
                 Gambar</button>
         </div>
-    </form> --}}
+    </form>
 
-    <form wire:submit.prevent="postData" enctype="multipart/form-data">
+    {{-- <form wire:submit.prevent="postData" enctype="multipart/form-data">
         <div
             class="relative custom-file-input border-2 border-gray-300 border-dashed rounded-md bg-white dark:bg-gray-700 h-72 mt-4 w-full max-w-md mx-auto">
             @if (!$temporaryUrl)
@@ -124,7 +124,7 @@
                 class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded btn {{ $temporaryUrl ? '' : 'btn-disabled' }} md:px-44">Deteksi
                 Gambar</button>
         </div>
-    </form>
+    </form> --}}
 
     @if ($disease)
         @if ($disease !== 'sehat')
