@@ -181,6 +181,7 @@ class DetectForm extends Component
         } catch (Exception $e) {
             logger()->error('Error in storeImageHelper:', ['error' => $e->getMessage()]);
             session()->flash('error', 'Failed to store image: ' . $e->getMessage());
+            dd(['error di store Helper' => $e ]);
             return redirect()->back();
         }
     }
