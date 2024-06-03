@@ -109,9 +109,9 @@
                 <div class="space-y-1 text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Klik untuk memilih file di sini</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Klik untuk upload file di sini</p>
                 </div>
             </div>
         </div>
