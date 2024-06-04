@@ -17,6 +17,9 @@ class LaporanSection extends Component
     public $all_expenditure;
     public $averageTransaction;
     public $averageExpenditure;
+    public $totalTransactions;
+    public $totalExpenditures;
+    public $laba;
 
 
     public function mount()
@@ -106,13 +109,34 @@ class LaporanSection extends Component
         $this->all_expenditure = $expenditures->sum();
         $this->all_transaction = $transactions->sum();
 
-        $totalMonths = $startDate->diffInMonths($endDate) + 1;
+        // $totalMonths = $startDate->diffInMonths($endDate) + 1;
 
-        $totalExpenditure = $expenditures->sum();
-        $this->averageExpenditure = $totalExpenditure / $totalMonths;
+        // $totalExpenditure = $expenditures->sum();
+        // $this->averageExpenditure = $totalExpenditure / $totalMonths;
 
-        $totalTransaction = $transactions->sum();
-        $this->averageTransaction = $totalTransaction / $totalMonths;
+        // $totalTransaction = $transactions->sum();
+        // $this->averageTransaction = $totalTransaction / $totalMonths;
+
+        // Query untuk mendapatkan total transaksi
+        $totalTransactions = Transaction::where('UserId', $userId)
+            ->whereBetween('TransactionDate', [$startDate, $endDate])
+            ->count();
+
+        // Query untuk mendapatkan total pengeluaran
+        $totalExpenditures = Expenditure::where('UserId', $userId)
+            ->whereBetween('ExpenditureDate', [$startDate, $endDate])
+            ->count();
+
+        $this->totalTransactions = $totalTransactions;
+        $this->totalExpenditures = $totalExpenditures;
+
+        $this->laba = $this->all_transaction - $this->all_expenditure;
+
+        // Menampilkan pemberitahuan jika laba negatif
+        if ($this->laba < 0) {
+            session()->flash('negative_profit_message', 'Peringatan: Laba Anda negatif!');
+        }
+
     }
 
 

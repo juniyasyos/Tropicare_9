@@ -2,15 +2,15 @@
     <x-slot name="header">
         <div class="navbar sm:block md:hidden lg:hidden">
             <div class="navbar-start">
-                <button href="{{ route('dashboard') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" id="back">
-                        <path
-                            d="M22,15H12.41l2.3-2.29a1,1,0,0,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L12.41,17H22a1,1,0,0,0,0-2Z">
+                <a href="{{ route('dashboard') }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
                         </path>
                     </svg>
-                </button>
+                </a>
             </div>
-            <div class="navbar-center mt-5">
+            <div class="navbar-center">
                 <a class="btn btn-ghost text-lg">Rekapitulasi</a>
             </div>
             <div class="navbar-end">

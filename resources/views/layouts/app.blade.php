@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/x-icon" href="{{ asset('storage/src/image/logo.webp') }}" />
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -25,10 +25,10 @@
     {{-- Livewire styles --}}
     @livewireStyles
 
-    <!-- PWA  -->
+    {{-- <!-- PWA  -->
     <meta name="theme-color" content="#6777ef" />
     <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
-    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}"> --}}
 </head>
 
 <body class="font-sans antialiased">

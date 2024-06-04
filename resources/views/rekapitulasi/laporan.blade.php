@@ -2,16 +2,16 @@
     <x-slot name="header">
         <div class="navbar sm:block md:hidden lg:hidden">
             <div class="navbar-start">
-                <button href="{{ route('dashboard') }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                <a href="{{ route('dashboard') }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
                         </path>
                     </svg>
-                </button>
+                </a>
             </div>
-            <div class="navbar-center mt-5">
-                <a class="btn btn-ghost text-lg">Rekapitulasi</a>
+            <div class="navbar-center">
+                <a class="btn btn-ghost text-lg">Laporan</a>
             </div>
             <div class="navbar-end">
             </div>

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="navbar sm:block md:hidden lg:hidden">
+        <div class="navbar sm:block md:hidden lg:hidden pt-2 bg-white border border-gray-300">
             <div class="navbar-start">
                 <a href="{{ route('dashboard') }}">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
