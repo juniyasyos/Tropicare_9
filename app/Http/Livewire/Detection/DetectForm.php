@@ -35,7 +35,7 @@ class DetectForm extends Component
     public function uploadData()
     {
         $this->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
         ]);
 
         if ($this->photo) {
@@ -180,7 +180,7 @@ class DetectForm extends Component
         } catch (Exception $e) {
             logger()->error('Error in storeImageHelper:', ['error' => $e->getMessage()]);
             session()->flash('error', 'Failed to store image: ' . $e->getMessage());
-            dd(['error di store Helper' => $e ]);
+            dd(['error di store Helper' => $e]);
             return redirect()->back();
         }
     }
