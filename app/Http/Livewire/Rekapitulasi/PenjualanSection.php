@@ -95,7 +95,8 @@ class PenjualanSection extends Component
 
         return Transaction::where('UserId', $userId)
             ->whereBetween('TransactionDate', [$this->startDate, $this->endDate])
-            ->paginate(15);
+            ->orderBy('TransactionDate', 'desc')
+            ->get();
     }
 
     public function render()

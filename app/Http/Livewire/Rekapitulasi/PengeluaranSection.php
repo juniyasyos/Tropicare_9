@@ -89,7 +89,11 @@ class PengeluaranSection extends Component
     private function fetchExpenditures()
     {
         $userId = Auth::id();
-        return Expenditure::where('UserId', $userId)->whereBetween('ExpenditureDate', [$this->startDate, $this->endDate])->get();
+
+        return Expenditure::where('UserId', $userId)
+            ->whereBetween('ExpenditureDate', [$this->startDate, $this->endDate])
+            ->orderBy('ExpenditureDate', 'desc')
+            ->get();
     }
 
     public function render()
