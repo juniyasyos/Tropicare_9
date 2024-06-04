@@ -117,7 +117,7 @@
                                     </svg>
                                     <div>
                                         <p class="text-gray-600">Saran</p>
-                                        <p class="text-lg text-yellow-500 font-semibold">Gunakan Pestisida</p>
+                                        {{-- <p class="text-lg text-yellow-500 font-semibold">Gunakan Pestisida</p> --}}
                                     </div>
                                 </div>
                             </div>
