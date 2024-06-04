@@ -38,12 +38,21 @@ class DetectForm extends Component
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
         ]);
 
+        logger()->info('Mulai proses upload.');
+
         if ($this->photo) {
             logger()->info('File uploaded:', ['photo' => $this->photo->getClientOriginalName()]);
+            try {
+                $path = $this->photo->store('photos');
+                logger()->info('File stored at path:', ['path' => $path]);
+            } catch (Exception $e) {
+                logger()->error('Error storing file:', ['error' => $e->getMessage()]);
+            }
         } else {
-            logger()->error('Tidak ada file photo yang terupload.');
+            logger()->error('No file uploaded.');
         }
     }
+
 
     public function postData()
     {
